@@ -24,9 +24,9 @@ const About = () => {
           setCardWidth(cardRect.width);
           
           // Calculate spacer height for smooth scroll animation
-          // Animation happens over 60% of scroll, then wait period
-          const animationHeight = window.innerHeight * 1.5; // Animation space
-          const waitHeight = window.innerHeight * 0.5; // Wait period after animation
+          // Animation happens over 50% of scroll (faster), then wait period
+          const animationHeight = window.innerHeight * 1.2; // Reduced animation space
+          const waitHeight = window.innerHeight * 0.3; // Reduced wait period
           setSpacerHeight(animationHeight + waitHeight);
         }
       }
@@ -51,11 +51,12 @@ const About = () => {
     layoutEffect: false
   });
 
-  // Animation progress: Cards animate over first 60% of scroll
+  // Animation progress: Cards animate over first 50% of scroll (faster)
   const animationProgress = useTransform(
     scrollYProgress,
-    [0, 0.6],
-    [0, 1]
+    [0, 0.5],
+    [0, 1],
+    { clamp: false }
   );
 
   // Calculate gap between cards (60px gap)
@@ -134,17 +135,17 @@ const About = () => {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9
+      y: 30,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
         ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.1
+        delay: 0
       }
     }
   };

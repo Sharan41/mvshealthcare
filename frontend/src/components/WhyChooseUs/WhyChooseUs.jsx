@@ -24,9 +24,9 @@ const WhyChooseUs = () => {
           
           // Spacer height: enough to scroll through all 4 cards smoothly
           // Each card gets equal scroll space, plus extra space after last card for readability
-          // Increase scroll space to ensure last card reaches center
-          const cardScrollSpace = window.innerHeight * WHY_CHOOSE_US.length;
-          const extraSpaceAfterLastCard = window.innerHeight * 0.8; // Increased from 0.5 to 0.8 for smoother completion
+          // Reduced scroll space for faster, more responsive animation
+          const cardScrollSpace = window.innerHeight * WHY_CHOOSE_US.length * 0.8; // Reduced from 1.0 to 0.8
+          const extraSpaceAfterLastCard = window.innerHeight * 0.5; // Reduced from 0.8 to 0.5
           const calculatedHeight = cardScrollSpace + extraSpaceAfterLastCard;
           setSpacerHeight(calculatedHeight);
         }
@@ -75,10 +75,8 @@ const WhyChooseUs = () => {
       // Ensure the animation completes fully so last card reaches center
       // Use the full scroll progress range to ensure smooth completion
       const normalizedProgress = Math.min(latest / cardAnimationEndProgress, 1.0);
-      // Use smooth easing for natural movement (ease-in-out cubic)
-      const easedProgress = normalizedProgress < 0.5
-        ? 4 * normalizedProgress * normalizedProgress * normalizedProgress
-        : 1 - Math.pow(-2 * normalizedProgress + 2, 3) / 2;
+      // Use faster, smoother easing for responsive movement (ease-out cubic)
+      const easedProgress = 1 - Math.pow(1 - normalizedProgress, 3);
       return -easedProgress * totalScrollDistance;
     }
   );
@@ -136,12 +134,12 @@ const WhyChooseUs = () => {
   });
 
   const titleVariants = {
-    hidden: { opacity: 0, y: -30 },
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
         ease: [0.4, 0, 0.2, 1]
       }
     }
