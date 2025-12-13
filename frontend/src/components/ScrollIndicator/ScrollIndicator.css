@@ -1,0 +1,104 @@
+.scroll-indicator {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.scroll-progress-bar {
+  width: 4px;
+  height: 200px;
+  background: rgba(61, 80, 157, 0.1);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-progress-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--color-primary-blue), var(--color-primary-green));
+  border-radius: var(--radius-full);
+  transition: height 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(61, 80, 157, 0.3);
+}
+
+.scroll-section-markers {
+  position: relative;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scroll-marker {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-base);
+}
+
+.marker-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-dusty-blue);
+  border: 2px solid var(--color-white);
+  transition: all var(--transition-base);
+  box-shadow: 0 0 0 0 rgba(61, 80, 157, 0.4);
+}
+
+.scroll-marker:hover .marker-dot,
+.scroll-marker.active .marker-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary-blue);
+  box-shadow: 0 0 0 4px rgba(61, 80, 157, 0.2);
+  transform: scale(1.2);
+}
+
+.marker-label {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all var(--transition-base);
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-blue);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.scroll-marker:hover .marker-label,
+.scroll-marker.active .marker-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 968px) {
+  .scroll-indicator {
+    right: 15px;
+  }
+
+  .scroll-progress-bar,
+  .scroll-section-markers {
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+

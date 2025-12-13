@@ -1,0 +1,79 @@
+.geometric-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.loader-shape {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary-blue);
+  border-radius: 2px;
+  animation: geometricPulse 1.4s ease-in-out infinite;
+}
+
+.shape-1 {
+  animation-delay: 0s;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.shape-2 {
+  animation-delay: 0.2s;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.shape-3 {
+  animation-delay: 0.4s;
+  border-radius: 50%;
+}
+
+.shape-4 {
+  animation-delay: 0.6s;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+@keyframes geometricPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.loader-small .loader-shape {
+  width: 8px;
+  height: 8px;
+}
+
+.loader-medium .loader-shape {
+  width: 12px;
+  height: 12px;
+}
+
+.loader-large .loader-shape {
+  width: 16px;
+  height: 16px;
+}
+
+/* Dot-grid loading pattern */
+.geometric-loader.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+}
+
+.geometric-loader.dot-grid .loader-shape {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary-blue);
+}
+
+

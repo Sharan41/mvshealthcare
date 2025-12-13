@@ -1,0 +1,276 @@
+{
+  "products": [
+    {
+      "id": "disposable-syringes",
+      "category": "Disposable Syringes",
+      "name": "MVS GRANDEUR Disposable Syringes",
+      "description": "High quality disposable syringes with premium medical grade materials",
+      "features": [
+        "High clarity transparent barrel molded by using Premium Quality Medical Grade Polypropylene",
+        "Thermoplastic Elastomer (TPE) Gasket for smooth movement of the plunger",
+        "With Luer Slip / with needle",
+        "Non-toxic, non-pyrogen, ETO Sterile",
+        "Painless extra thin wall bevel silicon coated triangle cut needle"
+      ],
+      "specifications": {
+        "needleSizes": ["21 G", "24 G (10 ml)"],
+        "packType": "HM Pouch"
+      }
+    },
+    {
+      "id": "infusion-sets",
+      "category": "Infusion & Transfusion",
+      "name": "Infusion Sets",
+      "description": "Non-vented infusion sets for safe fluid administration",
+      "features": [
+        "Soft and Kink Free medical grade PVC Tube",
+        "Sharp spike with PVC Drip chamber",
+        "Roller Clamp for controlling Fluid Flow",
+        "Non Vented with Tube Latex and Luer Lock",
+        "Injection site for extra medication and siliconized Needle"
+      ],
+      "specifications": {
+        "needleSize": "21G",
+        "packType": "HM Pouch"
+      }
+    },
+    {
+      "id": "iv-cannula",
+      "category": "Infusion & Transfusion",
+      "name": "IV Cannula",
+      "subtitle": "with wings and injection port",
+      "description": "Thin walled PTFE Teflon catheter for intravenous access",
+      "features": [
+        "Thin walled PTFE Teflon Catheter",
+        "Luer Lock with Injection port and Wings",
+        "Standard Colour Code for Easy Identification"
+      ],
+      "specifications": {
+        "sizeRange": {
+          "Green": "18 G",
+          "Blue": "20 G",
+          "Pink": "22G"
+        }
+      }
+    },
+    {
+      "id": "urine-collection-bag",
+      "category": "Urology",
+      "name": "Urine Collection Bag",
+      "description": "Transparent medical grade PVC urine collection bag",
+      "features": [
+        "Transparent Medical Grade PVC Urine Bag Cloth",
+        "Soft & Kink free Medical Grade PVC Tubing",
+        "Variant: Top Outlet"
+      ],
+      "specifications": {
+        "sizeRange": "Approx. 2000 ml"
+      }
+    },
+    {
+      "id": "gauze-sponge",
+      "category": "Wound Care",
+      "name": "Gauze Sponge",
+      "description": "Soft and absorbent gauze sponges for medical use",
+      "features": [
+        "Soft and Absorbent",
+        "Made of ethically sourced raw materials"
+      ],
+      "specifications": {
+        "sterile": [
+          "5 cm X 5 cm - 12 ply - 25 pcs",
+          "5 cm X 5 cm - 12 ply - 50 pcs",
+          "5 cm X 5 cm - 12 ply - 100 pcs"
+        ],
+        "nonSterile": [
+          "7.5 cm X 7.5 cm - 12 ply - 25 pcs",
+          "7.5 cm X 7.5 cm - 12 ply - 50 pcs",
+          "7.5 cm X 7.5 cm - 12 ply - 100 pcs"
+        ]
+      }
+    },
+    {
+      "id": "gauze-cloth",
+      "category": "Wound Care",
+      "name": "Gauze Cloth",
+      "description": "Complete length and size gauze cloth",
+      "features": [
+        "Complete length and size",
+        "Starch free",
+        "Soft and Absorbent"
+      ],
+      "specifications": {
+        "sizeRange": "10 cm X 3 mtr"
+      }
+    },
+    {
+      "id": "gamjee-roll",
+      "category": "Wound Care",
+      "name": "Gamjee Roll",
+      "description": "High absorbency medical grade cotton roll",
+      "features": [
+        "High Absorbency",
+        "Complete length and size",
+        "Soft textured",
+        "Medical Grade cotton",
+        "Neutral Ph"
+      ],
+      "specifications": {
+        "sizeRange": ["50 gms", "200 gms", "500 gms"]
+      }
+    },
+    {
+      "id": "gamjee-roll-cotton",
+      "category": "Wound Care",
+      "name": "Gamjee Roll (Cotton)",
+      "description": "100% cotton gamjee roll",
+      "features": [
+        "High Absorbency",
+        "Made with 100% cotton",
+        "Soft and Comfortable",
+        "Neutral Ph"
+      ],
+      "specifications": {
+        "sizeRange": [
+          "10 cm X 3 mtr - 1 pc",
+          "15 cm X 2 mtr - 1 pc"
+        ]
+      }
+    },
+    {
+      "id": "surgical-towel",
+      "category": "Hospital Supplies",
+      "name": "Surgical Towel",
+      "description": "Hygienically packed surgical towel",
+      "features": [
+        "Hygienically packed",
+        "Soft and absorbent"
+      ],
+      "specifications": {
+        "sizeRange": "25 cm x 25 cm - 12 ply - 1 pc"
+      }
+    },
+    {
+      "id": "bed-sheet-sets",
+      "category": "Hospital Supplies",
+      "name": "Bed Sheet Sets",
+      "description": "Disposable bedsheet sets",
+      "features": [
+        "Disposable bedsheet sets",
+        "Hygienically packed",
+        "Lightweight",
+        "Easily disposable",
+        "Water resistant",
+        "Virgin quality, non-woven"
+      ]
+    },
+    {
+      "id": "surgical-gowns",
+      "category": "Hospital Apparels",
+      "name": "Surgical Gowns",
+      "description": "Soft and comfortable surgical gowns",
+      "features": [
+        "Soft and smooth fabric",
+        "Comfortable to wear",
+        "Durable finish",
+        "Easy to wear"
+      ],
+      "specifications": {
+        "sizeRange": ["Small", "Medium", "Large"]
+      }
+    },
+    {
+      "id": "dressing-kit",
+      "category": "Kits",
+      "name": "Dressing Kit",
+      "description": "Complete dressing kit for medical procedures",
+      "contents": [
+        "Dressing tray - 1",
+        "Gauze - 5",
+        "Cotton Balls - 5",
+        "Forceps - 1",
+        "Gloves - 1",
+        "SMS Sheet - 1"
+      ]
+    },
+    {
+      "id": "surgical-kit",
+      "category": "Kits",
+      "name": "Surgical Kit",
+      "description": "Comprehensive surgical kit",
+      "contents": [
+        "Surgery Gown - 3",
+        "Hand Towel - 3",
+        "Large Sheet - 3",
+        "Absorbent Sheet - 2",
+        "Trolley Sheet - 2"
+      ]
+    },
+    {
+      "id": "hiv-kit",
+      "category": "Kits",
+      "name": "HIV Kit",
+      "description": "Protective kit for HIV procedures",
+      "contents": [
+        "Surgeon Gown - 1",
+        "Cap - 1",
+        "Shoe Cover - 1",
+        "Goggles - 1",
+        "Gloves - 1",
+        "Mask - 1"
+      ]
+    },
+    {
+      "id": "orthopaedic-kit",
+      "category": "Kits",
+      "name": "Orthopaedic Kit",
+      "description": "Specialized kit for orthopaedic procedures",
+      "contents": [
+        "Main Trolley reinforced - 1",
+        "Mayo stand cover - 1",
+        "Absorbent ortho U drape with U cut adhesive - 1",
+        "Pain drape with adhesive tape - 2",
+        "Plain sheet - 2",
+        "Cautery bag with release",
+        "Basin stand sheet - 1",
+        "Leggings - 2"
+      ]
+    }
+  ],
+  "categories": [
+    "Disposable Syringes",
+    "Infusion & Transfusion",
+    "Urology",
+    "Wound Care",
+    "Hospital Supplies",
+    "Hospital Apparels",
+    "Kits"
+  ],
+  "company": {
+    "name": "MVS HEALTHCARE PVT. LTD.",
+    "tagline": "QUALITY CARE TRUSTED EXPERTISE",
+    "values": [
+      "Top-Notch Quality",
+      "Innovative Products",
+      "Reliable Distribution"
+    ],
+    "address": {
+      "line1": "D.no.2-5-2, First Floor",
+      "line2": "Kummari Vari Street, Kavali",
+      "district": "Dist. SPSR Nellore",
+      "state": "Andhra Pradesh",
+      "pincode": "524201",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "+91 8074490300",
+      "whatsapp": "+91 8074490300",
+      "email": "mvshealthcarepvt@gmail.com"
+    },
+    "certifications": [
+      "ISO 13485:2016 Certified Company"
+    ]
+  }
+}
+
+

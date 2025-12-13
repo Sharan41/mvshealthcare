@@ -1,0 +1,866 @@
+.about-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.about {
+  background: linear-gradient(135deg, #3d509d 0%, #5a6bb8 50%, #7b8fd1 100%);
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+  padding: var(--spacing-2xl) 0;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Geometric Shapes Background */
+.about-geometric-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.about .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Striped Circles - Same as Hero section */
+.about-striped-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.2;
+  z-index: 0;
+  will-change: transform;
+}
+
+.about-striped-circle-1 {
+  bottom: 8%;
+  right: -5%;
+  animation: aboutBounceCircle1 14s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+}
+
+.about-striped-circle-2 {
+  top: 15%;
+  left: -5%;
+  animation: aboutBounceCircle2 16s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+  animation-delay: 2s;
+}
+
+@keyframes aboutBounceCircle1 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    right: -5%;
+    bottom: 8%;
+  }
+  100% {
+    transform: translate(-40%, -20%) rotate(360deg);
+    right: 35%;
+    bottom: 12%;
+  }
+}
+
+@keyframes aboutBounceCircle2 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    left: -5%;
+    top: 15%;
+  }
+  100% {
+    transform: translate(40%, 20%) rotate(-360deg);
+    left: 35%;
+    top: 20%;
+  }
+}
+
+.about-striped-circle-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.4) 0px,
+    rgba(255, 255, 255, 0.4) 10px,
+    rgba(255, 255, 255, 0.15) 10px,
+    rgba(255, 255, 255, 0.15) 20px
+  );
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(255, 255, 255, 0.1);
+  filter: blur(0.5px);
+}
+
+.about .section-title {
+  position: relative;
+  z-index: 1;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  margin-bottom: 0;
+  margin-top: var(--spacing-md);
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-spacer {
+  background: transparent;
+  position: relative;
+  z-index: 0;
+}
+
+.about-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 1100px;
+  margin-top: 0;
+  overflow: visible !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 0 5vw;
+  padding-bottom: var(--spacing-4xl);
+}
+
+.about-content {
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  will-change: transform;
+  margin: 0;
+  padding: 0;
+  min-height: 1100px;
+  display: block;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.about-card {
+  background: var(--color-white);
+  padding: 0;
+  border-radius: 32px;
+  text-align: left;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+  width: 520px;
+  min-width: 520px;
+  max-width: 520px;
+  height: 850px;
+  min-height: 850px;
+  max-height: 850px;
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  transform-origin: center center;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: box-shadow 0.2s ease;
+}
+
+/* Mission card with abstract blue background */
+.mission-card {
+  position: relative;
+}
+
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(61, 80, 157, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(61, 80, 157, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 20%, rgba(189, 211, 206, 0.3) 0%, transparent 40%),
+    linear-gradient(135deg, var(--color-primary-blue) 0%, rgba(61, 80, 157, 0.9) 50%, var(--color-dusty-blue) 100%);
+  background-size: 200% 200%;
+  animation: fluidMove 20s ease-in-out infinite;
+  z-index: 0;
+  filter: blur(0.5px);
+}
+
+@keyframes fluidMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Vision card with abstract sage green/dusty blue background */
+.vision-card {
+  position: relative;
+}
+
+.vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(176, 188, 161, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(189, 211, 206, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(84, 92, 55, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, var(--color-sage-green) 0%, var(--color-dusty-blue) 50%, rgba(176, 188, 161, 0.9) 100%);
+  background-size: 200% 200%;
+  animation: fluidMove 25s ease-in-out infinite reverse;
+  z-index: 0;
+  filter: blur(0.5px);
+}
+
+.about-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-blue), #7b8fd1, var(--color-primary-blue));
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  border-radius: 32px 32px 0 0;
+}
+
+/* Subtle hover effect */
+.about-card:hover {
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card:hover::before {
+  filter: blur(0px);
+  animation-duration: 15s;
+}
+
+.vision-card:hover::before {
+  filter: blur(0px);
+  animation-duration: 20s;
+}
+
+.about-card:hover::after {
+  transform: scaleX(1);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Card Header Section with Title */
+.about-card-header {
+  position: relative;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-2xl);
+}
+
+.about-card-title-large {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.card-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  background: var(--color-white);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 4px solid var(--color-white);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+.mission-card .card-icon {
+  border-color: var(--color-primary-blue);
+  background: linear-gradient(135deg, rgba(61, 80, 157, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.vision-card .card-icon {
+  border-color: var(--color-sage-green);
+  background: linear-gradient(135deg, rgba(176, 188, 161, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.about-card:hover .card-icon {
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Enhanced Card Content Section - UX Optimized for Reading Flow */
+.about-card-content {
+  padding: calc(var(--spacing-xl) + 20px) 3rem var(--spacing-3xl);
+  background: var(--color-white);
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: visible;
+  overflow-x: hidden;
+  min-height: 0;
+  /* UX: Optimal reading width - prevents eye strain */
+  max-width: 100%;
+  /* UX: Creates visual breathing room - consistent left/right padding for readability */
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-top: 0;
+}
+
+/* Enhanced padding for Mission card content - Tighter spacing to match Vision */
+.mission-card .about-card-content {
+  padding: calc(var(--spacing-md) + 10px) 3rem var(--spacing-xl);
+  padding-left: 3rem;
+  padding-right: 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.98) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: -60px;
+}
+
+/* Enhanced padding for Vision card content - Matching Mission card */
+.vision-card .about-card-content {
+  padding: calc(var(--spacing-md) + 10px) 3rem var(--spacing-2xl);
+  padding-left: 3rem;
+  padding-right: 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.98) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  margin-top: -60px;
+}
+
+/* Icon styling */
+.card-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary-blue);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mission-card .card-icon svg {
+  color: var(--color-primary-blue);
+}
+
+.vision-card .card-icon svg {
+  color: var(--color-primary-green);
+}
+
+.about-card:hover .card-icon svg {
+  transform: scale(1.05);
+}
+
+.about-card h3 {
+  color: var(--color-primary-blue);
+  margin-bottom: var(--spacing-lg);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-card h3 {
+  color: var(--color-primary-blue);
+}
+
+.vision-card h3 {
+  color: var(--color-primary-green);
+}
+
+/* Enhanced card header styling - Fixed visibility */
+.about-card-header {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  z-index: 3;
+}
+
+.about-card-title-large {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+  text-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  filter: none;
+  opacity: 1;
+}
+
+.vision-card .about-card-title-large {
+  color: var(--color-white);
+  text-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.about-card-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+  border-radius: 2px;
+  z-index: 3;
+}
+
+.vision-card .about-card-header::after {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+}
+
+.mission-content,
+.vision-content {
+  color: #2c3e50;
+  line-height: 1.95;
+  margin-bottom: var(--spacing-3xl);
+  font-size: 1.25rem;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  letter-spacing: 0.02em;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Enhanced Mission card content - UX Optimized for Reading Engagement */
+.mission-card .mission-content {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.85;
+  font-size: 1.1rem;
+  color: #34495e;
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+  padding-top: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* UX: Optimal line length for readability (50-75 chars) */
+  max-width: 65ch;
+  /* UX: Creates visual flow and prevents text from feeling cramped */
+  margin-left: 0;
+  margin-right: auto;
+  /* UX: Paragraph spacing creates visual breaks */
+  margin-top: 0;
+}
+
+.mission-card .mission-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-blue) 0%, rgba(61, 80, 157, 0.3) 100%);
+  border-radius: 2px;
+}
+
+/* Enhanced Vision card content - UX Optimized for Reading Engagement */
+.vision-card .vision-content {
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.9;
+  font-size: 1.15rem;
+  color: #34495e;
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+  padding-top: var(--spacing-sm);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* UX: Optimal line length for readability (50-75 chars) */
+  max-width: 65ch;
+  /* UX: Creates visual flow and prevents text from feeling cramped */
+  margin-left: 0;
+  margin-right: auto;
+  /* UX: Paragraph spacing creates visual breaks */
+  margin-top: 0;
+}
+
+.mission-points {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-3xl) 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced Mission card list - UX Optimized for Scanning */
+.mission-card .mission-points {
+  margin: var(--spacing-md) 0 var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: linear-gradient(180deg, rgba(61, 80, 157, 0.03) 0%, rgba(61, 80, 157, 0.01) 50%, transparent 100%);
+  border-radius: 12px;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+  /* UX: Creates visual separation from content above */
+  border-top: 1px solid rgba(61, 80, 157, 0.08);
+  border-bottom: 1px solid rgba(61, 80, 157, 0.08);
+  /* UX: Adds breathing room around list */
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.mission-points li {
+  padding: var(--spacing-lg) 0;
+  padding-left: var(--spacing-3xl);
+  position: relative;
+  color: #2c3e50;
+  line-height: 1.9;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: var(--spacing-md);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.015em;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Enhanced Mission card list items - UX Optimized for Easy Scanning */
+.mission-card .mission-points li {
+  padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-3xl);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: #34495e;
+  border-left: 3px solid rgba(61, 80, 157, 0.15);
+  padding-left: var(--spacing-3xl);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.015em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* UX: Creates visual rhythm between items */
+  position: relative;
+  /* UX: Hover state for engagement */
+}
+
+.mission-card .mission-points li:hover {
+  border-left-color: rgba(61, 80, 157, 0.3);
+  transform: translateX(4px);
+  background: rgba(61, 80, 157, 0.02);
+  border-radius: 4px;
+  padding-left: calc(var(--spacing-3xl) + 4px);
+}
+
+.mission-card .mission-points li:hover {
+  border-left-color: rgba(61, 80, 157, 0.3);
+  padding-left: calc(var(--spacing-3xl) + 4px);
+  color: #2c3e50;
+  transform: translateX(2px);
+}
+
+.mission-points li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: var(--spacing-md);
+  color: var(--color-white);
+  font-weight: 900;
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, rgba(61, 80, 157, 0.95) 50%, rgba(61, 80, 157, 0.85) 100%);
+  border-radius: 50%;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 12px rgba(61, 80, 157, 0.35),
+    0 2px 6px rgba(61, 80, 157, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  transform: scale(1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.mission-points li:hover::before {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 
+    0 6px 20px rgba(61, 80, 157, 0.45),
+    0 3px 8px rgba(61, 80, 157, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, rgba(61, 80, 157, 1) 100%);
+}
+
+.about-card:hover .mission-points li::before {
+  transform: scale(1.08);
+}
+
+.mission-conclusion {
+  font-weight: 400;
+  color: #2c3e50;
+  margin-top: var(--spacing-md);
+  font-style: normal;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  position: relative;
+  z-index: 2;
+  padding: 0;
+  border-left: none;
+  background: none;
+  border-radius: 0;
+  transition: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  text-shadow: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Enhanced Mission card conclusion - UX Optimized for Emphasis */
+.mission-card .mission-conclusion {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) 0 0 0;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #34495e;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* UX: Creates visual separation from list above */
+  border-top: 1px solid rgba(61, 80, 157, 0.1);
+  padding-top: var(--spacing-sm);
+  /* UX: Optimal reading width */
+  max-width: 65ch;
+  margin-left: 0;
+  margin-right: auto;
+  /* UX: Slightly increased font weight for emphasis */
+  font-weight: 400;
+}
+
+/* Vision card content - matching Mission card styling */
+.vision-card .vision-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.about-card:hover .mission-conclusion {
+  /* No special hover effects - plain text */
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .about .section-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .about-carousel-wrapper {
+    height: 800px;
+    min-height: 800px;
+    margin-top: var(--spacing-lg);
+  }
+
+  .about-content {
+    gap: 40px;
+    padding: 0;
+  }
+  
+  .about-carousel-wrapper {
+    padding: 0 3vw;
+  }
+
+  .about-card {
+    padding: var(--spacing-2xl);
+    border-radius: 24px;
+    min-width: 380px;
+    max-width: 90%;
+  }
+
+  .card-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-card h3 {
+    font-size: 1.75rem;
+  }
+
+  .mission-content,
+  .vision-content {
+    font-size: 1rem;
+  }
+
+  .mission-points li {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .about .section-title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-carousel-wrapper {
+    height: 700px;
+    min-height: 700px;
+    margin-top: var(--spacing-md);
+  }
+
+  .about-content {
+    gap: 30px;
+    padding: 0;
+  }
+  
+  .about-carousel-wrapper {
+    padding: 0 2vw;
+  }
+
+  .about-card {
+    padding: var(--spacing-xl);
+    border-radius: 20px;
+    min-width: 320px;
+  }
+
+  .card-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .about-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .mission-content,
+  .vision-content {
+    font-size: 0.95rem;
+  }
+
+  .mission-points li {
+    font-size: 0.95rem;
+    padding-left: var(--spacing-xl);
+  }
+}

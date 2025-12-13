@@ -1,0 +1,239 @@
+.geometric-shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.geometric-shape {
+  position: absolute;
+  opacity: 0.5;
+  will-change: transform;
+  transition: opacity 0.4s ease, transform 0.1s ease-out;
+  filter: blur(0.5px);
+}
+
+.geometric-shape:hover {
+  opacity: 0.7;
+}
+
+/* Dot Grids - 4 rows x 5 columns (20 dots) - Enhanced positioning */
+.dot-grid-top-left {
+  top: 12%;
+  left: 8%;
+  width: 140px;
+  height: 112px;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 0s;
+  z-index: 2;
+}
+
+.dot-grid-top-right {
+  top: 12%;
+  right: 8%;
+  width: 140px;
+  height: 112px;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+  z-index: 2;
+}
+
+.dot-grid-bottom-center {
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 112px;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 4s;
+  z-index: 2;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+.dot-grid-bottom-center {
+  animation-name: floatCenter;
+}
+
+@keyframes floatCenter {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-beige);
+  opacity: 0.85;
+  box-shadow: 
+    0 0 8px rgba(231, 229, 215, 0.8),
+    0 0 16px rgba(231, 229, 215, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dot:nth-child(odd) {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.dot:nth-child(even) {
+  animation: pulse 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Striped Circle - Smoothly bouncing between bottom right and bottom left */
+.striped-circle {
+  bottom: 8%;
+  right: -5%;
+  width: 200px;
+  height: 200px;
+  opacity: 0.3;
+  z-index: 1;
+  animation: bounceCircle 14s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+}
+
+@keyframes bounceCircle {
+  0% {
+    /* Start position - bottom right */
+    transform: translate(0, 0) rotate(0deg);
+    right: -5%;
+    bottom: 8%;
+  }
+  100% {
+    /* End position - bottom left, slightly up, avoiding center dot grid */
+    transform: translate(-92%, -16%) rotate(360deg);
+    right: 88%;
+    bottom: 11%;
+  }
+}
+
+.striped-circle-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-beige) 0px,
+    var(--color-beige) 10px,
+    rgba(231, 229, 215, 0.3) 10px,
+    rgba(231, 229, 215, 0.3) 20px
+  );
+  box-shadow: 
+    0 0 20px rgba(231, 229, 215, 0.3),
+    0 0 40px rgba(231, 229, 215, 0.2);
+  filter: blur(0.5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+  .dot-grid-top-left,
+  .dot-grid-top-right,
+  .dot-grid-bottom-center {
+    width: 100px;
+    height: 80px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .dot-grid {
+    gap: 10px;
+  }
+
+  .striped-circle {
+    width: 160px;
+    height: 160px;
+    opacity: 0.25;
+  }
+}
+
+@media (max-width: 768px) {
+  .dot-grid-top-left,
+  .dot-grid-top-right,
+  .dot-grid-bottom-center {
+    width: 90px;
+    height: 72px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dot-grid {
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .striped-circle {
+    width: 140px;
+    height: 140px;
+    opacity: 0.25;
+  }
+
+  .geometric-shape {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .dot-grid-top-left {
+    top: 10%;
+    left: 5%;
+  }
+
+  .dot-grid-top-right {
+    top: 10%;
+    right: 5%;
+  }
+
+  .dot-grid-bottom-center {
+    bottom: 15%;
+  }
+
+  .striped-circle {
+    width: 120px;
+    height: 120px;
+    opacity: 0.2;
+  }
+}
+
