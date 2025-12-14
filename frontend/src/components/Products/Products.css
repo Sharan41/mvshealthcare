@@ -292,6 +292,9 @@
   perspective: 1000px;
   height: 400px;
   will-change: transform, opacity;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .product-card {
@@ -302,6 +305,11 @@
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
   cursor: pointer;
   will-change: transform;
+  pointer-events: auto;
+  touch-action: manipulation; /* Prevent double-tap zoom on mobile */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  -webkit-touch-callout: none; /* Disable iOS callout menu */
+  user-select: none; /* Prevent text selection on touch */
 }
 
 /* Desktop hover flip - disabled on mobile */
@@ -313,6 +321,16 @@
 
 /* Mobile tap flip */
 @media (max-width: 968px) {
+  .product-card-wrapper {
+    isolation: isolate; /* Create new stacking context for each card */
+    z-index: 1;
+    position: relative;
+  }
+  
+  .product-card-wrapper:active {
+    z-index: 10; /* Bring tapped card to front */
+  }
+  
   .product-card.flipped {
     transform: rotateY(180deg);
   }

@@ -10,6 +10,7 @@ const Products = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [flippedCards, setFlippedCards] = useState(new Set());
   const sectionRef = useRef(null);
+  const touchStartRef = useRef(null);
   
   useEffect(() => {
     const checkMobile = () => {
@@ -21,19 +22,31 @@ const Products = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleCardFlip = (productId) => {
+  const handleCardFlip = (productId, event) => {
     if (!isMobile) return; // Only handle tap on mobile
     
+    // Stop event propagation to prevent conflicts with other cards
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    
+    // Use functional update to ensure we're working with the latest state
     setFlippedCards(prev => {
+      // Create a new Set to avoid mutation
       const newSet = new Set(prev);
+      
+      // Toggle the flip state for this specific card only
       if (newSet.has(productId)) {
         newSet.delete(productId);
       } else {
         newSet.add(productId);
       }
+      
       return newSet;
     });
   };
+  
   
   const categories = ['All', ...productsData.categories];
   
@@ -273,11 +286,67 @@ const Products = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: window.innerWidth <= 968 ? 0.1 : 0.2, margin: "0px" }}
+                  onClick={(e) => {
+                    // Prevent wrapper from interfering with card clicks
+                    e.stopPropagation();
+                  }}
                 >
                   <div 
                     className={`product-card ${isFlipped ? 'flipped' : ''}`}
-                    onClick={() => handleCardFlip(product.id)}
-                    style={{ cursor: isMobile ? 'pointer' : 'pointer' }}
+                    data-product-id={product.id}
+                    onClick={(e) => {
+                      // Desktop click handler - also works as fallback for mobile
+                      if (!isMobile) return;
+                      e.stopPropagation();
+                      e.preventDefault();
+                      handleCardFlip(product.id, e);
+                    }}
+                    onTouchStart={(e) => {
+                      // Track touch start position and prevent default behaviors
+                      if (isMobile) {
+                        e.stopPropagation();
+                        const touch = e.touches[0];
+                        touchStartRef.current = {
+                          productId: product.id,
+                          x: touch.clientX,
+                          y: touch.clientY,
+                          time: Date.now()
+                        };
+                      }
+                    }}
+                    onTouchEnd={(e) => {
+                      // Mobile touch handler - primary handler for mobile devices
+                      if (!isMobile || !touchStartRef.current) return;
+                      
+                      e.stopPropagation();
+                      e.preventDefault();
+                      
+                      const touch = e.changedTouches[0];
+                      const touchStart = touchStartRef.current;
+                      
+                      // Check if this is the same touch (same product ID)
+                      if (touchStart.productId === product.id) {
+                        // Calculate movement distance
+                        const deltaX = Math.abs(touch.clientX - touchStart.x);
+                        const deltaY = Math.abs(touch.clientY - touchStart.y);
+                        const deltaTime = Date.now() - touchStart.time;
+                        
+                        // Only flip if it's a tap (not a swipe) - movement < 10px and time < 300ms
+                        if (deltaX < 10 && deltaY < 10 && deltaTime < 300) {
+                          handleCardFlip(product.id, e);
+                        }
+                      }
+                      
+                      // Reset touch start
+                      touchStartRef.current = null;
+                    }}
+                    onTouchCancel={(e) => {
+                      // Reset touch start if touch is cancelled
+                      if (isMobile) {
+                        touchStartRef.current = null;
+                      }
+                    }}
+                    style={{ cursor: isMobile ? 'pointer' : 'pointer', touchAction: 'manipulation' }}
                   >
                     {/* Front of Card - Image and Name */}
                     <div className="product-card-front">
