@@ -82,12 +82,35 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Tablet Styles */
+@media (max-width: 968px) {
   .fab-button {
     width: 56px;
     height: 56px;
     font-size: 22px;
+  }
+
+  .fab-whatsapp,
+  .fab-call {
+    bottom: 24px;
+  }
+
+  .fab-whatsapp {
+    right: 24px;
+  }
+
+  .fab-call {
+    left: 24px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .fab-button {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+    border-width: 2px;
   }
 
   .fab-whatsapp,
@@ -102,26 +125,109 @@
   .fab-call {
     left: 20px;
   }
+
+  /* Ensure buttons don't overlap with footer on mobile */
+  .footer ~ .floating-action-buttons .fab-button {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
 }
 
+/* Small Mobile */
 @media (max-width: 480px) {
   .fab-button {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+    border-width: 2px;
   }
 
   .fab-whatsapp,
   .fab-call {
-    bottom: 15px;
+    bottom: 16px;
   }
 
   .fab-whatsapp {
-    right: 15px;
+    right: 16px;
   }
 
   .fab-call {
-    left: 15px;
+    left: 16px;
+  }
+
+  /* Adjust pulse animation for smaller buttons */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 
+        0 3px 15px rgba(0, 0, 0, 0.2),
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 0 0 0 rgba(37, 211, 102, 0.6);
+    }
+    50% {
+      box-shadow: 
+        0 3px 15px rgba(0, 0, 0, 0.2),
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 0 0 8px rgba(37, 211, 102, 0);
+    }
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .fab-button {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .fab-whatsapp,
+  .fab-call {
+    bottom: 12px;
+  }
+
+  .fab-whatsapp {
+    right: 12px;
+  }
+
+  .fab-call {
+    left: 12px;
+  }
+}
+
+/* Landscape Mobile - Adjust positioning */
+@media (max-width: 768px) and (orientation: landscape) {
+  .fab-button {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .fab-whatsapp,
+  .fab-call {
+    bottom: 12px;
+  }
+
+  .fab-whatsapp {
+    right: 12px;
+  }
+
+  .fab-call {
+    left: 12px;
+  }
+}
+
+/* Safe area support for devices with notches */
+@supports (padding: max(0px)) {
+  .fab-whatsapp,
+  .fab-call {
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .fab-whatsapp {
+    right: max(16px, env(safe-area-inset-right));
+  }
+
+  .fab-call {
+    left: max(16px, env(safe-area-inset-left));
   }
 }
 

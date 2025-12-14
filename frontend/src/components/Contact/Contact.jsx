@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { COMPANY_INFO } from '../../utils/constants';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -104,7 +116,7 @@ const Contact = () => {
           variants={titleVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3, margin: isMobile ? "0px" : "0px" }}
         >
           Get in Touch
         </motion.h2>
@@ -114,7 +126,7 @@ const Contact = () => {
           variants={contentVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2, margin: isMobile ? "0px" : "0px" }}
         >
           <motion.div 
             className="contact-info"

@@ -9,6 +9,17 @@ const WhyChooseUs = () => {
   const [cardWidth, setCardWidth] = useState(0); // Card width including gap (for scroll distance)
   const [actualCardWidth, setActualCardWidth] = useState(0); // Actual card width without gap (for centering)
   const [spacerHeight, setSpacerHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   useEffect(() => {
     const calculateDimensions = () => {
@@ -22,13 +33,18 @@ const WhyChooseUs = () => {
           setCardWidth(calculatedCardWidth);
           setActualCardWidth(calculatedActualCardWidth);
           
-          // Spacer height: enough to scroll through all 4 cards smoothly
-          // Each card gets equal scroll space, plus extra space after last card for readability
-          // Increase scroll space to ensure last card reaches center
-          const cardScrollSpace = window.innerHeight * WHY_CHOOSE_US.length;
-          const extraSpaceAfterLastCard = window.innerHeight * 0.8; // Increased from 0.5 to 0.8 for smoother completion
-          const calculatedHeight = cardScrollSpace + extraSpaceAfterLastCard;
-          setSpacerHeight(calculatedHeight);
+          // On mobile, use minimal spacer height since cards stack vertically
+          if (window.innerWidth <= 968) {
+            setSpacerHeight(0);
+          } else {
+            // Spacer height: enough to scroll through all 4 cards smoothly
+            // Each card gets equal scroll space, plus extra space after last card for readability
+            // Increase scroll space to ensure last card reaches center
+            const cardScrollSpace = window.innerHeight * WHY_CHOOSE_US.length;
+            const extraSpaceAfterLastCard = window.innerHeight * 0.8; // Increased from 0.5 to 0.8 for smoother completion
+            const calculatedHeight = cardScrollSpace + extraSpaceAfterLastCard;
+            setSpacerHeight(calculatedHeight);
+          }
         }
       }
     };
@@ -43,7 +59,7 @@ const WhyChooseUs = () => {
     
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
   
   // Scroll progress: 0 = section becomes sticky, 1 = spacer fully scrolled
   const { scrollYProgress } = useScroll({
@@ -66,6 +82,11 @@ const WhyChooseUs = () => {
   const x = useTransform(
     scrollYProgress,
     (latest) => {
+      // On mobile, disable horizontal scroll animation - cards stack vertically
+      if (isMobile) {
+        return 0;
+      }
+      
       if (totalScrollDistance === 0 || isNaN(latest)) {
         // When cardWidth is 0, we can't calculate properly yet
         // Return 0 and let padding-left handle initial positioning
@@ -88,6 +109,11 @@ const WhyChooseUs = () => {
     return useTransform(
       scrollYProgress,
       (latest) => {
+        // On mobile, always return 1.0 for full visibility
+        if (isMobile) {
+          return 1.0;
+        }
+        
         // Normalize progress to account for extra space after last card
         const normalizedProgress = Math.min(latest / cardAnimationEndProgress, 1.0);
         
@@ -170,7 +196,7 @@ const WhyChooseUs = () => {
             variants={titleVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: isMobile ? 0.1 : 0.3, margin: isMobile ? "0px" : "0px" }}
           >
             Why Choose Us
           </motion.h2>
@@ -180,8 +206,9 @@ const WhyChooseUs = () => {
               ref={containerRef}
               className="features-container"
               style={{ 
-                x,
-                paddingLeft: actualCardWidth > 0 ? `calc(50vw - ${actualCardWidth / 2}px)` : '50vw'
+                x: isMobile ? 0 : x,
+                paddingLeft: isMobile ? 0 : (actualCardWidth > 0 ? `calc(50vw - ${actualCardWidth / 2}px)` : '50vw'),
+                transform: isMobile ? 'none' : undefined
               }}
             >
               {WHY_CHOOSE_US.map((feature, index) => {

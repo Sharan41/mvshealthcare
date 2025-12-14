@@ -21,7 +21,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="footer-section">
+          <div className="footer-section footer-quick-links">
             <h4>Quick Links</h4>
             <ul className="footer-links">
               {NAVIGATION_ITEMS.map((item) => (
@@ -72,6 +72,18 @@ const Footer = () => {
           {COMPANY_INFO.certifications.map((cert, index) => (
             <p key={index} className="certification">{cert}</p>
           ))}
+          <div className="footer-credits-divider"></div>
+          <p className="footer-credits">
+            <span className="footer-credits-text">Created by</span>{' '}
+            <a 
+              href="https://www.linkedin.com/in/sai-sharan-vishnu/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-credits-link"
+            >
+              Sai Sharan.V
+            </a>
+          </p>
         </div>
       </div>
     </footer>

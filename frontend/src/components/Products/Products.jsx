@@ -7,7 +7,33 @@ import './Products.css';
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [flippedCards, setFlippedCards] = useState(new Set());
   const sectionRef = useRef(null);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleCardFlip = (productId) => {
+    if (!isMobile) return; // Only handle tap on mobile
+    
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(productId)) {
+        newSet.delete(productId);
+      } else {
+        newSet.add(productId);
+      }
+      return newSet;
+    });
+  };
   
   const categories = ['All', ...productsData.categories];
   
@@ -188,7 +214,11 @@ const Products = () => {
             variants={titleVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "-300px" }}
+            viewport={{ 
+              once: true, 
+              amount: isMobile ? 0.1 : 0.05, 
+              margin: isMobile ? "0px" : "-300px" 
+            }}
           >
             Our Products
           </motion.h2>
@@ -199,7 +229,11 @@ const Products = () => {
           variants={filterVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.05, margin: "-300px" }}
+          viewport={{ 
+            once: true, 
+            amount: isMobile ? 0.1 : 0.05, 
+            margin: isMobile ? "0px" : "-300px" 
+          }}
         >
           {categories.map((category, index) => (
             <motion.button
@@ -226,114 +260,126 @@ const Products = () => {
             variants={gridVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2, margin: "0px" }}
+            viewport={{ once: true, amount: window.innerWidth <= 968 ? 0.1 : 0.2, margin: "0px" }}
             key={selectedCategory}
           >
-            {filteredProducts.map((product, index) => (
-              <motion.div 
-                key={product.id} 
-                className="product-card-wrapper"
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2, margin: "0px" }}
-              >
-                <div className="product-card">
-                  {/* Front of Card - Image and Name */}
-                  <div className="product-card-front">
-                    <div className="product-image-container">
-                      {getProductImage(product.id) ? (
-                        <img 
-                          src={getProductImage(product.id)} 
-                          alt={product.name}
-                          className="product-image"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'flex';
-                          }}
-                        />
-                      ) : null}
-                      <div className="product-icon-fallback" style={{ display: getProductImage(product.id) ? 'none' : 'flex' }}>
-                        {getProductIcon(product.category)}
+            {filteredProducts.map((product, index) => {
+              const isFlipped = flippedCards.has(product.id);
+              return (
+                <motion.div 
+                  key={product.id} 
+                  className="product-card-wrapper"
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: window.innerWidth <= 968 ? 0.1 : 0.2, margin: "0px" }}
+                >
+                  <div 
+                    className={`product-card ${isFlipped ? 'flipped' : ''}`}
+                    onClick={() => handleCardFlip(product.id)}
+                    style={{ cursor: isMobile ? 'pointer' : 'pointer' }}
+                  >
+                    {/* Front of Card - Image and Name */}
+                    <div className="product-card-front">
+                      <div className="product-image-container">
+                        {getProductImage(product.id) ? (
+                          <img 
+                            src={getProductImage(product.id)} 
+                            alt={product.name}
+                            className="product-image"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'flex';
+                            }}
+                          />
+                        ) : null}
+                        <div className="product-icon-fallback" style={{ display: getProductImage(product.id) ? 'none' : 'flex' }}>
+                          {getProductIcon(product.category)}
+                        </div>
+                      </div>
+                      <div className="product-card-front-content">
+                        <h3 className="product-name">{product.name}</h3>
+                        {product.subtitle && <p className="product-subtitle">{product.subtitle}</p>}
+                        <div className="product-category-badge">{product.category}</div>
+                        {isMobile && (
+                          <div className="tap-to-flip-indicator">
+                            <span>Tap to see details</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="product-card-front-content">
-                      <h3 className="product-name">{product.name}</h3>
-                      {product.subtitle && <p className="product-subtitle">{product.subtitle}</p>}
-                      <div className="product-category-badge">{product.category}</div>
-                    </div>
-                  </div>
 
-                  {/* Back of Card - Product Details */}
-                  <div className="product-card-back">
-                    <div className="product-card-back-content">
-                      <h3 className="product-name-back">{product.name}</h3>
-                      {product.subtitle && <p className="product-subtitle-back">{product.subtitle}</p>}
-                      
-                      <p className="product-description">{product.description}</p>
-                      
-                      {product.features && (
-                        <ul className="product-features">
-                          {product.features.map((feature, index) => (
-                            <li key={index}>{feature}</li>
-                          ))}
-                        </ul>
-                      )}
-                      
-                      {product.contents && (
-                        <div className="product-contents">
-                          <h4>Contents:</h4>
-                          <ul>
-                            {product.contents.map((item, index) => (
-                              <li key={index}>{item}</li>
+                    {/* Back of Card - Product Details */}
+                    <div className="product-card-back">
+                      <div className="product-card-back-content">
+                        <h3 className="product-name-back">{product.name}</h3>
+                        {product.subtitle && <p className="product-subtitle-back">{product.subtitle}</p>}
+                        
+                        <p className="product-description">{product.description}</p>
+                        
+                        {product.features && (
+                          <ul className="product-features">
+                            {product.features.map((feature, index) => (
+                              <li key={index}>{feature}</li>
                             ))}
                           </ul>
-                        </div>
-                      )}
-                      
-                      {product.specifications && (
-                        <div className="product-specs">
-                          {Object.entries(product.specifications).map(([key, value]) => {
-                            // Format key: convert camelCase to Title Case
-                            const formatKey = (str) => {
-                              let formatted = str
-                                .replace(/([A-Z])/g, ' $1') // Add space before capital letters
-                                .trim()
-                                .split(' ')
-                                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                                .join(' ');
+                        )}
+                        
+                        {product.contents && (
+                          <div className="product-contents">
+                            <h4>Contents:</h4>
+                            <ul>
+                              {product.contents.map((item, index) => (
+                                <li key={index}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {product.specifications && (
+                          <div className="product-specs">
+                            {Object.entries(product.specifications).map(([key, value]) => {
+                              // Format key: convert camelCase to Title Case
+                              const formatKey = (str) => {
+                                let formatted = str
+                                  .replace(/([A-Z])/g, ' $1') // Add space before capital letters
+                                  .trim()
+                                  .split(' ')
+                                  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                                  .join(' ');
+                                
+                                // Normalize specific keys to consistent format
+                                if (formatted.toLowerCase().includes('needle size')) {
+                                  formatted = 'Needle Size'; // Always use singular
+                                }
+                                if (formatted.toLowerCase().includes('pack type')) {
+                                  formatted = 'Pack Type';
+                                }
+                                
+                                return formatted;
+                              };
                               
-                              // Normalize specific keys to consistent format
-                              if (formatted.toLowerCase().includes('needle size')) {
-                                formatted = 'Needle Size'; // Always use singular
-                              }
-                              if (formatted.toLowerCase().includes('pack type')) {
-                                formatted = 'Pack Type';
-                              }
+                              const formattedKey = formatKey(key);
                               
-                              return formatted;
-                            };
-                            
-                            const formattedKey = formatKey(key);
-                            
-                            return (
-                              <div key={key} className="spec-item">
-                                <strong>{formattedKey}:</strong>{' '}
-                                {typeof value === 'object' 
-                                  ? Array.isArray(value) 
-                                    ? value.join(', ') 
-                                    : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join(', ')
-                                  : value}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
+                              return (
+                                <div key={key} className="spec-item">
+                                  <strong>{formattedKey}:</strong>{' '}
+                                  {typeof value === 'object' 
+                                    ? Array.isArray(value) 
+                                      ? value.join(', ') 
+                                      : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join(', ')
+                                    : value}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
 

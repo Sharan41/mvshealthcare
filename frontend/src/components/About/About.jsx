@@ -10,6 +10,17 @@ const About = () => {
   const [viewportWidth, setViewportWidth] = useState(1400);
   const [containerWidth, setContainerWidth] = useState(1400);
   const [spacerHeight, setSpacerHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   useEffect(() => {
     const calculateDimensions = () => {
@@ -23,11 +34,16 @@ const About = () => {
           const cardRect = firstCard.getBoundingClientRect();
           setCardWidth(cardRect.width);
           
-          // Calculate spacer height for smooth scroll animation
-          // Animation happens over 60% of scroll, then wait period
-          const animationHeight = window.innerHeight * 1.5; // Animation space
-          const waitHeight = window.innerHeight * 0.5; // Wait period after animation
-          setSpacerHeight(animationHeight + waitHeight);
+          // On mobile, use minimal spacer height since cards stack vertically
+          if (window.innerWidth <= 968) {
+            setSpacerHeight(0);
+          } else {
+            // Calculate spacer height for smooth scroll animation
+            // Animation happens over 60% of scroll, then wait period
+            const animationHeight = window.innerHeight * 1.5; // Animation space
+            const waitHeight = window.innerHeight * 0.5; // Wait period after animation
+            setSpacerHeight(animationHeight + waitHeight);
+          }
         }
       }
     };
@@ -42,7 +58,7 @@ const About = () => {
     
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
   
   // Scroll progress: 0 = section becomes sticky, 1 = spacer fully scrolled
   const { scrollYProgress } = useScroll({
@@ -68,6 +84,13 @@ const About = () => {
   // Update card positions when dimensions or scroll progress changes
   useEffect(() => {
     if (cardWidth === 0 || viewportWidth === 0) return;
+    
+    // On mobile, disable scroll-based positioning - cards stack vertically
+    if (isMobile) {
+      leftCardX.set(0);
+      rightCardX.set(0);
+      return;
+    }
     
     const unsubscribeLeft = animationProgress.onChange((progress) => {
       // Start: Mission card half visible from LEFT edge
@@ -112,12 +135,14 @@ const About = () => {
       unsubscribeLeft();
       unsubscribeRight();
     };
-  }, [cardWidth, viewportWidth, animationProgress, gap, leftCardX, rightCardX]);
+  }, [cardWidth, viewportWidth, animationProgress, gap, leftCardX, rightCardX, isMobile]);
 
-  // Opacity: Start at 0.5 (half visible), fade in to 1.0 as they move to center
+  // Opacity: On mobile, always full opacity. On desktop, start at 0.5 and fade in
   const leftCardOpacity = useTransform(
     animationProgress,
     (progress) => {
+      // On mobile, always return 1.0 for full visibility
+      if (isMobile) return 1.0;
       // Start at 0.5, fade in to 1.0
       return 0.5 + (0.5 * progress);
     }
@@ -126,6 +151,8 @@ const About = () => {
   const rightCardOpacity = useTransform(
     animationProgress,
     (progress) => {
+      // On mobile, always return 1.0 for full visibility
+      if (isMobile) return 1.0;
       // Start at 0.5, fade in to 1.0
       return 0.5 + (0.5 * progress);
     }
@@ -174,7 +201,7 @@ const About = () => {
             variants={titleVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: isMobile ? 0.1 : 0.3, margin: isMobile ? "0px" : "0px" }}
           >
             About Us
           </motion.h2>
@@ -188,15 +215,16 @@ const About = () => {
                   <motion.div 
                 className="about-card mission-card"
                     style={{ 
-                      position: 'absolute',
-                  x: leftCardX,
-                      y: '-50%',
+                      position: isMobile ? 'relative' : 'absolute',
+                  x: isMobile ? 0 : leftCardX,
+                      y: isMobile ? 0 : '-50%',
                   opacity: leftCardOpacity,
-                      left: '50%',
-                      top: '50%'
+                      left: isMobile ? 'auto' : '50%',
+                      top: isMobile ? 'auto' : '50%',
+                      transform: isMobile ? 'none' : undefined
                     }}
                     whileHover={{
-                  scale: 1.01,
+                  scale: isMobile ? 1 : 1.01,
                       transition: {
                     duration: 0.2,
                         ease: [0.4, 0, 0.2, 1]
@@ -206,11 +234,11 @@ const About = () => {
                     <div className="about-card-header">
                   <h2 className="about-card-title-large">MISSION</h2>
                     <div className="card-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="2" fill="none"/>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" fill="none"/>
+                          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="2.5" fill="none"/>
                           <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
                         </svg>
                 </div>
                     </div>
@@ -231,15 +259,16 @@ const About = () => {
               <motion.div 
                 className="about-card vision-card"
                 style={{ 
-                  position: 'absolute',
-                  x: rightCardX,
-                  y: '-50%',
+                  position: isMobile ? 'relative' : 'absolute',
+                  x: isMobile ? 0 : rightCardX,
+                  y: isMobile ? 0 : '-50%',
                   opacity: rightCardOpacity,
-                  left: '50%',
-                  top: '50%'
+                  left: isMobile ? 'auto' : '50%',
+                  top: isMobile ? 'auto' : '50%',
+                  transform: isMobile ? 'none' : undefined
                 }}
                 whileHover={{
-                  scale: 1.01,
+                  scale: isMobile ? 1 : 1.01,
                   transition: {
                     duration: 0.2,
                     ease: [0.4, 0, 0.2, 1]

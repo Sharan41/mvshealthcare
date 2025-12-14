@@ -7,15 +7,30 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // Only run complex active section detection on desktop
+      if (isMobile) {
+        return;
+      }
+
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      setIsScrolled(scrollY > 50);
-
-      // Determine active section based on scroll position
-      // Find the section whose center is closest to the viewport center
       const navbarOffset = 80;
       const viewportCenter = scrollY + navbarOffset + windowHeight / 2;
       
@@ -69,10 +84,31 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Manual scroll handler for mobile
+  const handleMobileNavClick = (sectionId) => {
+    setIsMobileMenuOpen(false);
+    setActiveSection(sectionId);
+    
+    // Small delay to ensure menu closes before scrolling
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const navbarHeight = 80;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = sectionTop - navbarHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -88,23 +124,47 @@ const Navbar = () => {
             </div>
 
             <ul className={`navbar-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+              {isMobile && (
+                <li className="mobile-menu-close-wrapper">
+                  <button
+                    className="mobile-menu-close-btn"
+                    onClick={toggleMobileMenu}
+                    aria-label="Close menu"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 6L6 18M6 6l12 12" stroke="#8B5CF6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </li>
+              )}
               {NAVIGATION_ITEMS.map((item) => (
                 <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    smooth={true}
-                    duration={500}
-                    offset={-80}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      // Immediately set active section when link is clicked
-                      setActiveSection(item.to);
-                    }}
-                    className={activeSection === item.to ? 'active' : ''}
-                  >
-                    <span className="nav-link-text">{item.name}</span>
-                    <span className="nav-link-underline"></span>
-                  </Link>
+                  {isMobile ? (
+                    <a
+                      href={`#${item.to}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleMobileNavClick(item.to);
+                      }}
+                      className="nav-link-text"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.to}
+                      smooth={true}
+                      duration={500}
+                      offset={-80}
+                      onClick={() => {
+                        setActiveSection(item.to);
+                      }}
+                      className={activeSection === item.to ? 'active' : ''}
+                    >
+                      <span className="nav-link-text">{item.name}</span>
+                      <span className="nav-link-underline"></span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
