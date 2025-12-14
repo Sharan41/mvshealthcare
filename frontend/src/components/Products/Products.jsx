@@ -10,7 +10,7 @@ const Products = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [flippedCards, setFlippedCards] = useState(new Set());
   const sectionRef = useRef(null);
-  const touchStartRef = useRef(null);
+  const touchStartMap = useRef(new Map()); // Map to track touch starts per card
   
   useEffect(() => {
     const checkMobile = () => {
@@ -302,48 +302,51 @@ const Products = () => {
                       handleCardFlip(product.id, e);
                     }}
                     onTouchStart={(e) => {
-                      // Track touch start position and prevent default behaviors
+                      // Track touch start position per card
                       if (isMobile) {
                         e.stopPropagation();
                         const touch = e.touches[0];
-                        touchStartRef.current = {
-                          productId: product.id,
+                        touchStartMap.current.set(product.id, {
                           x: touch.clientX,
                           y: touch.clientY,
                           time: Date.now()
-                        };
+                        });
                       }
                     }}
                     onTouchEnd={(e) => {
                       // Mobile touch handler - primary handler for mobile devices
-                      if (!isMobile || !touchStartRef.current) return;
+                      if (!isMobile) return;
                       
                       e.stopPropagation();
                       e.preventDefault();
                       
-                      const touch = e.changedTouches[0];
-                      const touchStart = touchStartRef.current;
+                      const touchStart = touchStartMap.current.get(product.id);
                       
-                      // Check if this is the same touch (same product ID)
-                      if (touchStart.productId === product.id) {
+                      // If we have touch start data for this card
+                      if (touchStart) {
+                        const touch = e.changedTouches[0];
+                        
                         // Calculate movement distance
                         const deltaX = Math.abs(touch.clientX - touchStart.x);
                         const deltaY = Math.abs(touch.clientY - touchStart.y);
                         const deltaTime = Date.now() - touchStart.time;
                         
-                        // Only flip if it's a tap (not a swipe) - movement < 10px and time < 300ms
-                        if (deltaX < 10 && deltaY < 10 && deltaTime < 300) {
+                        // Only flip if it's a tap (not a swipe) - movement < 15px and time < 500ms
+                        if (deltaX < 15 && deltaY < 15 && deltaTime < 500) {
                           handleCardFlip(product.id, e);
                         }
+                      } else {
+                        // Fallback: if no touch start data, just flip (might be a quick tap)
+                        handleCardFlip(product.id, e);
                       }
                       
-                      // Reset touch start
-                      touchStartRef.current = null;
+                      // Clean up touch start data for this card
+                      touchStartMap.current.delete(product.id);
                     }}
                     onTouchCancel={(e) => {
-                      // Reset touch start if touch is cancelled
+                      // Clean up touch start if touch is cancelled
                       if (isMobile) {
-                        touchStartRef.current = null;
+                        touchStartMap.current.delete(product.id);
                       }
                     }}
                     style={{ cursor: isMobile ? 'pointer' : 'pointer', touchAction: 'manipulation' }}

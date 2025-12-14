@@ -338,6 +338,23 @@
   .product-card-wrapper:hover .product-card {
     transform: none; /* Disable hover flip on mobile */
   }
+  
+  /* Allow touch events to pass through child elements to the card */
+  .product-card-front,
+  .product-card-back {
+    pointer-events: none; /* Let parent handle all touch events */
+  }
+  
+  /* Re-enable pointer events for interactive elements inside */
+  .product-card-front *,
+  .product-card-back * {
+    pointer-events: auto;
+  }
+  
+  /* Ensure the card itself handles touch */
+  .product-card {
+    pointer-events: auto;
+  }
 }
 
 /* Desktop hover shadow - disabled on mobile */
