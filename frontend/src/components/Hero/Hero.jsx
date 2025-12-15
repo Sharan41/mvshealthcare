@@ -9,60 +9,66 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
 
   const titleVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30, y: 20 },
     visible: {
       opacity: 1,
       x: 0,
+      y: 0,
       transition: {
-        duration: 0.9,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const taglineVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30, y: 15 },
     visible: {
       opacity: 1,
       x: 0,
+      y: 0,
       transition: {
-        duration: 0.9,
-        delay: 0.2,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 1.1,
+        delay: 0.15,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const descriptionVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30, y: 15 },
     visible: {
       opacity: 1,
       x: 0,
+      y: 0,
       transition: {
-        duration: 0.9,
-        delay: 0.4,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 1.1,
+        delay: 0.3,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, x: 50, scale: 0.95 },
+    hidden: { opacity: 0, x: 30, scale: 0.96, y: 20 },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
+      y: 0,
       transition: {
-        duration: 1,
-        delay: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 1.3,
+        delay: 0.4,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
@@ -83,7 +89,8 @@ const Hero = () => {
                 className="hero-title"
                 variants={titleVariants}
               >
-                {COMPANY_INFO.name}
+                <span className="hero-title-line1">MVS HEALTHCARE</span>
+                <span className="hero-title-line2">PVT. LTD.</span>
               </motion.h1>
               <motion.p 
                 className="hero-tagline"

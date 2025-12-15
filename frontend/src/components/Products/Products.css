@@ -6,6 +6,15 @@
   overflow: hidden;
   transform-origin: center top;
   will-change: transform;
+  /* Prevent flash of unstyled content */
+  opacity: 0;
+  animation: fadeInProducts 0.3s ease-out 0.1s forwards;
+}
+
+@keyframes fadeInProducts {
+  to {
+    opacity: 1;
+  }
 }
 
 .products::before {

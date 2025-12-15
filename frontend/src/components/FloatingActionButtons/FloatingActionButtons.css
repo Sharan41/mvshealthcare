@@ -48,7 +48,8 @@
 }
 
 .fab-whatsapp:hover {
-  background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+  /* Keep the same bright colors on hover - just slightly brighter */
+  background: linear-gradient(135deg, #25D366 0%, #20B85A 100%);
 }
 
 /* Call Button - Bottom Left */
@@ -59,7 +60,8 @@
 }
 
 .fab-call:hover {
-  background: linear-gradient(135deg, #5a6bb8 0%, var(--color-primary-blue) 100%);
+  /* Keep the same bright colors on hover */
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, #6b7fc9 100%);
 }
 
 /* Pulse animation */

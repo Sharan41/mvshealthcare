@@ -71,18 +71,20 @@ const Products = () => {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      x: -100,
-      scale: 0.9,
-      filter: 'blur(8px)'
+      x: -50,
+      y: 20,
+      scale: 0.95,
+      filter: 'blur(6px)'
     },
     visible: {
       opacity: 1,
       x: 0,
+      y: 0,
       scale: 1,
       filter: 'blur(0px)',
       transition: {
-        duration: 1.0,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1],
         delay: 0.1
       }
     }
@@ -92,9 +94,9 @@ const Products = () => {
   const filterButtonVariants = {
     hidden: { 
       opacity: 0, 
-      y: 20,
-      scale: 0.9,
-      filter: 'blur(4px)'
+      y: 15,
+      scale: 0.92,
+      filter: 'blur(3px)'
     },
     visible: {
       opacity: 1,
@@ -103,22 +105,23 @@ const Products = () => {
       filter: 'blur(0px)',
       transition: {
         type: "spring",
-        stiffness: 300,
-        damping: 20,
-        duration: 0.5
+        stiffness: 250,
+        damping: 22,
+        duration: 0.7
       }
     }
   };
 
   const filterVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.08,
-        delayChildren: 0.4
+        duration: 0.8,
+        staggerChildren: 0.06,
+        delayChildren: 0.3,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
@@ -229,8 +232,8 @@ const Products = () => {
             whileInView="visible"
             viewport={{ 
               once: true, 
-              amount: isMobile ? 0.1 : 0.05, 
-              margin: isMobile ? "0px" : "-300px" 
+              amount: isMobile ? 0.15 : 0.1, 
+              margin: isMobile ? "0px" : "-200px" 
             }}
           >
             Our Products
@@ -244,8 +247,8 @@ const Products = () => {
           whileInView="visible"
           viewport={{ 
             once: true, 
-            amount: isMobile ? 0.1 : 0.05, 
-            margin: isMobile ? "0px" : "-300px" 
+            amount: isMobile ? 0.15 : 0.1, 
+            margin: isMobile ? "0px" : "-200px" 
           }}
         >
           {categories.map((category, index) => (
@@ -520,13 +523,13 @@ const Products = () => {
         {/* Download Buttons */}
         <motion.div 
           className="products-download-buttons"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
-            duration: 0.7,
-            delay: 0.3,
-            ease: [0.25, 0.46, 0.45, 0.94]
+            duration: 1.0,
+            delay: 0.4,
+            ease: [0.16, 1, 0.3, 1]
           }}
         >
           <motion.div
