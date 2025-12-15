@@ -1,4 +1,3 @@
-import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { COMPANY_INFO } from '../../utils/constants';
 import GeometricShapes from '../GeometricShapes/GeometricShapes';
@@ -16,20 +15,8 @@ const Hero = () => {
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    }
-  };
-
   const titleVariants = {
-    hidden: { opacity: 0, x: -100 },
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
       x: 0,
@@ -41,7 +28,7 @@ const Hero = () => {
   };
 
   const taglineVariants = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
       x: 0,
@@ -54,7 +41,7 @@ const Hero = () => {
   };
 
   const descriptionVariants = {
-    hidden: { opacity: 0, x: -80 },
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
       x: 0,
@@ -66,14 +53,15 @@ const Hero = () => {
     }
   };
 
-  const ctaVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const imageVariants = {
+    hidden: { opacity: 0, x: 50, scale: 0.95 },
     visible: {
       opacity: 1,
-      y: 0,
+      x: 0,
+      scale: 1,
       transition: {
-        duration: 0.7,
-        delay: 0.8,
+        duration: 1,
+        delay: 0.5,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
@@ -89,76 +77,40 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <div className="hero-text">
-            <motion.h1 className="hero-title">
-              <motion.span 
-                className="hero-title-part-1"
+          <div className="hero-text-wrapper">
+            <div className="hero-text">
+              <motion.h1 
+                className="hero-title"
                 variants={titleVariants}
               >
-                Welcome to
-              </motion.span>
-              <motion.span 
-                className="highlight hero-title-part-2"
-                variants={{
-                  hidden: { opacity: 0, x: 100 },
-                  visible: {
-                    opacity: 1,
-                    x: 0,
-                    transition: {
-                      duration: 0.9,
-                      delay: 0.15,
-                      ease: [0.25, 0.46, 0.45, 0.94]
-                    }
-                  }
-                }}
-              >
                 {COMPANY_INFO.name}
-              </motion.span>
-            </motion.h1>
-            <motion.p 
-              className="hero-tagline"
-              variants={taglineVariants}
-            >
-              {COMPANY_INFO.tagline}
-            </motion.p>
-            <motion.p 
-              className="hero-description"
-              variants={descriptionVariants}
-            >
-              {COMPANY_INFO.values.join(' • ')}
-            </motion.p>
-            <motion.div 
-              className="hero-cta"
-              variants={ctaVariants}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </motion.h1>
+              <motion.p 
+                className="hero-tagline"
+                variants={taglineVariants}
               >
-                <Link
-                  to="products"
-                  smooth={true}
-                  duration={500}
-                  className="btn btn-secondary"
-                >
-                  Explore Products
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                {COMPANY_INFO.tagline}
+              </motion.p>
+              <motion.p 
+                className="hero-description"
+                variants={descriptionVariants}
               >
-                <Link
-                  to="contact"
-                  smooth={true}
-                  duration={500}
-                  className="btn btn-secondary"
-                >
-                  Get in Touch
-                </Link>
-              </motion.div>
-            </motion.div>
+                {COMPANY_INFO.values.join(' • ')}
+              </motion.p>
+            </div>
           </div>
+          <motion.div 
+            className="hero-image-wrapper"
+            variants={imageVariants}
+          >
+            <div className="hero-image-container">
+              <img 
+                src="/images/hero-banner.png" 
+                alt="MVS Healthcare Products"
+                className="hero-banner-image"
+              />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
