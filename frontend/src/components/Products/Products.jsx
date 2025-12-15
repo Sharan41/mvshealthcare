@@ -427,19 +427,81 @@ const Products = () => {
                                 if (formatted.toLowerCase().includes('pack type')) {
                                   formatted = 'Pack Type';
                                 }
+                                if (formatted.toLowerCase().includes('size range')) {
+                                  formatted = 'Size Range';
+                                }
                                 
                                 return formatted;
                               };
                               
                               const formattedKey = formatKey(key);
                               
+                              // Special handling for size ranges
+                              if (key.toLowerCase().includes('sizerange') || key.toLowerCase().includes('size range')) {
+                                return (
+                                  <div key={key} className="spec-item spec-item-size-range">
+                                    <div className="size-range-header">
+                                      <strong className="size-range-label">{formattedKey}:</strong>
+                                    </div>
+                                    <div className="size-range-content">
+                                      {typeof value === 'object' 
+                                        ? Array.isArray(value) 
+                                          ? (
+                                            <div className="size-range-list">
+                                              {value.map((item, idx) => (
+                                                <div key={idx} className="size-range-item">
+                                                  <span className="size-range-badge">{item}</span>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          )
+                                          : (
+                                            <div className="size-range-object">
+                                              {Object.entries(value).map(([k, v], idx) => (
+                                                <div key={idx} className="size-range-color-item">
+                                                  <span className="size-range-color-label">{k}:</span>
+                                                  <span className="size-range-color-value">{v}</span>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          )
+                                        : (
+                                          <div className="size-range-single">
+                                            <span className="size-range-badge">{value}</span>
+                                          </div>
+                                        )}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              
+                              // Special handling for sterile/nonSterile (Gauze Swab)
+                              if (key.toLowerCase() === 'sterile' || key.toLowerCase() === 'nonsterile') {
+                                const categoryLabel = key.toLowerCase() === 'sterile' ? 'STERILE' : 'NON - STERILE';
+                                return (
+                                  <div key={key} className="spec-item spec-item-category">
+                                    <div className="category-header">
+                                      <strong className="category-label">{categoryLabel}</strong>
+                                    </div>
+                                    <div className="category-content">
+                                      {Array.isArray(value) && value.map((item, idx) => (
+                                        <div key={idx} className="category-item">
+                                          <span className="category-badge">{item}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              
+                              // Default handling for other specifications
                               return (
                                 <div key={key} className="spec-item">
                                   <strong>{formattedKey}:</strong>{' '}
                                   {typeof value === 'object' 
                                     ? Array.isArray(value) 
-                                      ? value.join(', ') 
-                                      : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join(', ')
+                                      ? value.join(' - ') // Use hyphen instead of comma
+                                      : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join(' - ') // Use hyphen instead of comma
                                     : value}
                                 </div>
                               );
