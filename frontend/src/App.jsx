@@ -14,9 +14,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <WhyChooseUs />
-        <About />
         <Products />
+        <About />
+        <WhyChooseUs />
         <Contact />
       </main>
       <Footer />
