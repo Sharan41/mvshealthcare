@@ -1,15 +1,9 @@
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { MISSION, VISION } from '../../utils/constants';
 import './About.css';
 
 const About = () => {
-  const wrapperRef = useRef(null);
-  const containerRef = useRef(null);
-  const [cardWidth, setCardWidth] = useState(0);
-  const [viewportWidth, setViewportWidth] = useState(1400);
-  const [containerWidth, setContainerWidth] = useState(1400);
-  const [spacerHeight, setSpacerHeight] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
@@ -22,147 +16,14 @@ const About = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  useEffect(() => {
-    const calculateDimensions = () => {
-      setViewportWidth(window.innerWidth);
-      if (containerRef.current) {
-        const containerRect = containerRef.current.getBoundingClientRect();
-        setContainerWidth(containerRect.width || window.innerWidth);
-        
-        const firstCard = containerRef.current.querySelector('.about-card');
-        if (firstCard) {
-          const cardRect = firstCard.getBoundingClientRect();
-          setCardWidth(cardRect.width);
-          
-          // On mobile, use minimal spacer height since cards stack vertically
-          if (window.innerWidth <= 968) {
-            setSpacerHeight(0);
-          } else {
-            // Calculate spacer height for smooth scroll animation
-            // Animation happens over 60% of scroll, then wait period
-            const animationHeight = window.innerHeight * 1.5; // Animation space
-            const waitHeight = window.innerHeight * 0.5; // Wait period after animation
-            setSpacerHeight(animationHeight + waitHeight);
-          }
-        }
-      }
-    };
-    
-    calculateDimensions();
-    setTimeout(calculateDimensions, 100);
-    setTimeout(calculateDimensions, 500);
-    
-    const handleResize = () => {
-      calculateDimensions();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMobile]);
-  
-  // Scroll progress: 0 = section becomes sticky, 1 = spacer fully scrolled
-  const { scrollYProgress } = useScroll({
-    target: wrapperRef,
-    offset: ["start start", "end start"],
-    layoutEffect: false
-  });
-
-  // Animation progress: Cards animate over first 60% of scroll
-  const animationProgress = useTransform(
-    scrollYProgress,
-    [0, 0.6],
-    [0, 1]
-  );
-
   // Calculate gap between cards (60px gap)
   const gap = 60;
-  
-  // Motion values for card positions - updated via useEffect to react to state changes
-  const leftCardX = useMotionValue(0);
-  const rightCardX = useMotionValue(0);
-  
-  // Update card positions when dimensions or scroll progress changes
-  useEffect(() => {
-    if (cardWidth === 0 || viewportWidth === 0) return;
-    
-    // On mobile, disable scroll-based positioning - cards stack vertically
-    if (isMobile) {
-      leftCardX.set(0);
-      rightCardX.set(0);
-      return;
-    }
-    
-    const unsubscribeLeft = animationProgress.onChange((progress) => {
-      // Start: Mission card half visible from LEFT edge
-      // Card's RIGHT edge should be at x = cardWidth/2 (so right half is visible)
-      // Card left edge (before transform) = viewportWidth/2
-      // Card right edge (before transform) = viewportWidth/2 + cardWidth
-      // To move card right edge from (viewportWidth/2 + cardWidth) to (cardWidth/2):
-      // translateX = cardWidth/2 - (viewportWidth/2 + cardWidth) = -viewportWidth/2 - cardWidth/2
-      const startX = -viewportWidth / 2 - cardWidth / 2;
-      
-      // End: centered position
-      const endX = -cardWidth - gap / 2;
-      
-      leftCardX.set(startX + (endX - startX) * progress);
-    });
-    
-    const unsubscribeRight = animationProgress.onChange((progress) => {
-      // Start: Vision card half visible from RIGHT edge
-      // Card's LEFT edge should be at x = viewportWidth - cardWidth/2 (so left half is visible)
-      // Card left edge (before transform) = viewportWidth/2
-      // To move card left edge from (viewportWidth/2) to (viewportWidth - cardWidth/2):
-      // translateX = (viewportWidth - cardWidth/2) - (viewportWidth/2) = viewportWidth/2 - cardWidth/2
-      const startX = viewportWidth / 2 - cardWidth / 2;
-      
-      // End: centered position
-      const endX = gap / 2;
-      
-      rightCardX.set(startX + (endX - startX) * progress);
-    });
-    
-    // Initialize positions immediately
-    const currentProgress = animationProgress.get();
-    const leftStartX = -viewportWidth / 2 - cardWidth / 2;
-    const leftEndX = -cardWidth - gap / 2;
-    leftCardX.set(leftStartX + (leftEndX - leftStartX) * currentProgress);
-    
-    const rightStartX = viewportWidth / 2 - cardWidth / 2;
-    const rightEndX = gap / 2;
-    rightCardX.set(rightStartX + (rightEndX - rightStartX) * currentProgress);
-    
-    return () => {
-      unsubscribeLeft();
-      unsubscribeRight();
-    };
-  }, [cardWidth, viewportWidth, animationProgress, gap, leftCardX, rightCardX, isMobile]);
-
-  // Opacity: On mobile, always full opacity. On desktop, start at 0.5 and fade in
-  const leftCardOpacity = useTransform(
-    animationProgress,
-    (progress) => {
-      // On mobile, always return 1.0 for full visibility
-      if (isMobile) return 1.0;
-      // Start at 0.5, fade in to 1.0
-      return 0.5 + (0.5 * progress);
-    }
-  );
-
-  const rightCardOpacity = useTransform(
-    animationProgress,
-    (progress) => {
-      // On mobile, always return 1.0 for full visibility
-      if (isMobile) return 1.0;
-      // Start at 0.5, fade in to 1.0
-      return 0.5 + (0.5 * progress);
-    }
-  );
 
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9
+      y: 30,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
@@ -170,14 +31,51 @@ const About = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.16, 1, 0.3, 1],
         delay: 0.1
       }
     }
   };
 
+  // Card animation variants - slide in from sides with fade
+  const missionCardVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      x: isMobile ? 0 : -80
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.1
+      }
+    }
+  };
+
+  const visionCardVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      x: isMobile ? 0 : 80
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.25
+      }
+    }
+  };
+
   return (
-    <div ref={wrapperRef} className="about-wrapper">
+    <div className="about-wrapper">
       <section 
         id="about" 
         className="about section"
@@ -207,30 +105,29 @@ const About = () => {
           </motion.h2>
           
           <div className="about-carousel-wrapper">
-            <div 
-              ref={containerRef}
-              className="about-content"
-            >
+            <div className="about-content">
               {/* Mission Card (Left) */}
-                  <motion.div 
+              <motion.div 
                 className="about-card mission-card"
-                    style={{ 
-                      position: isMobile ? 'relative' : 'absolute',
-                  x: isMobile ? 0 : leftCardX,
-                      y: isMobile ? 0 : '-50%',
-                  opacity: leftCardOpacity,
-                      left: isMobile ? 'auto' : '50%',
-                      top: isMobile ? 'auto' : '50%',
-                      transform: isMobile ? 'none' : undefined
-                    }}
-                    whileHover={{
+                variants={missionCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                style={{ 
+                  position: isMobile ? 'relative' : 'absolute',
+                  left: isMobile ? 'auto' : 'calc(50% - 550px)',
+                  top: isMobile ? 'auto' : '0',
+                  transform: isMobile ? 'none' : 'none',
+                  willChange: 'auto'
+                }}
+                whileHover={{
                   scale: isMobile ? 1 : 1.01,
-                      transition: {
+                  transition: {
                     duration: 0.2,
-                        ease: [0.4, 0, 0.2, 1]
-                      }
-                    }}
-                  >
+                    ease: [0.4, 0, 0.2, 1]
+                  }
+                }}
+              >
                     <div className="about-card-header">
                   <h2 className="about-card-title-large">MISSION</h2>
                     <div className="card-icon">
@@ -258,14 +155,16 @@ const About = () => {
               {/* Vision Card (Right) */}
               <motion.div 
                 className="about-card vision-card"
+                variants={visionCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 style={{ 
                   position: isMobile ? 'relative' : 'absolute',
-                  x: isMobile ? 0 : rightCardX,
-                  y: isMobile ? 0 : '-50%',
-                  opacity: rightCardOpacity,
-                  left: isMobile ? 'auto' : '50%',
-                  top: isMobile ? 'auto' : '50%',
-                  transform: isMobile ? 'none' : undefined
+                  left: isMobile ? 'auto' : 'calc(50% + 30px)',
+                  top: isMobile ? 'auto' : '0',
+                  transform: isMobile ? 'none' : 'none',
+                  willChange: 'auto'
                 }}
                 whileHover={{
                   scale: isMobile ? 1 : 1.01,
@@ -294,11 +193,6 @@ const About = () => {
           </div>
         </div>
       </section>
-      {/* Spacer creates scroll space for horizontal animation */}
-      <div 
-        className="about-spacer"
-        style={{ height: `${spacerHeight}px` }}
-      ></div>
     </div>
   );
 };
