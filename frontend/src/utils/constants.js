@@ -26,9 +26,9 @@ export const COMPANY_INFO = {
 
 export const NAVIGATION_ITEMS = [
   { name: "Home", to: "home" },
-  { name: "Why Choose Us", to: "why-choose-us" },
-  { name: "About Us", to: "about" },
   { name: "Products", to: "products" },
+  { name: "About Us", to: "about" },
+  { name: "Why Choose Us", to: "why-choose-us" },
   { name: "Contact", to: "contact" }
 ];
 
