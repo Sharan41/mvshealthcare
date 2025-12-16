@@ -353,7 +353,10 @@ const Products = () => {
                         touchStartMap.current.delete(product.id);
                       }
                     }}
-                    style={{ cursor: isMobile ? 'pointer' : 'pointer', touchAction: 'manipulation' }}
+                    style={{ 
+                      cursor: isMobile ? 'pointer' : 'pointer', 
+                      touchAction: isMobile && isFlipped ? 'pan-y' : 'manipulation' 
+                    }}
                   >
                     {/* Front of Card - Image and Name */}
                     <div className="product-card-front">
@@ -386,8 +389,84 @@ const Products = () => {
                     </div>
 
                     {/* Back of Card - Product Details */}
-                    <div className="product-card-back">
-                      <div className="product-card-back-content">
+                    <div 
+                      className="product-card-back"
+                      onTouchStart={(e) => {
+                        // Track touch start for card back - allow scrolling
+                        if (isMobile && isFlipped) {
+                          const touch = e.touches[0];
+                          if (touch) {
+                            touchStartMap.current.set(`${product.id}-back`, {
+                              x: touch.clientX,
+                              y: touch.clientY,
+                              time: Date.now()
+                            });
+                          }
+                        }
+                      }}
+                      onTouchMove={(e) => {
+                        // Allow scrolling - don't prevent default
+                        if (isMobile && isFlipped) {
+                          // Let scrolling happen naturally
+                        }
+                      }}
+                      onTouchEnd={(e) => {
+                        // Handle flip on card back only if it's a tap (not scroll)
+                        if (!isMobile || !isFlipped) return;
+                        
+                        const touchStart = touchStartMap.current.get(`${product.id}-back`);
+                        
+                        if (touchStart && e.changedTouches && e.changedTouches[0]) {
+                          const touch = e.changedTouches[0];
+                          const deltaX = Math.abs(touch.clientX - touchStart.x);
+                          const deltaY = Math.abs(touch.clientY - touchStart.y);
+                          const deltaTime = Date.now() - touchStart.time;
+                          
+                          // Only flip if minimal movement (tap, not scroll) - movement < 10px
+                          if (deltaX < 10 && deltaY < 10 && deltaTime < 300) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            handleCardFlip(product.id, e);
+                          }
+                        }
+                        
+                        touchStartMap.current.delete(`${product.id}-back`);
+                      }}
+                    >
+                      <div 
+                        className="product-card-back-content"
+                        style={{ touchAction: 'pan-y' }}
+                        onTouchStart={(e) => {
+                          // Track touch start for scrolling detection
+                          if (isMobile && isFlipped) {
+                            const touch = e.touches[0];
+                            if (touch) {
+                              touchStartMap.current.set(`${product.id}-content`, {
+                                x: touch.clientX,
+                                y: touch.clientY,
+                                time: Date.now(),
+                                scrollTop: e.currentTarget.scrollTop
+                              });
+                            }
+                          }
+                        }}
+                        onTouchMove={(e) => {
+                          // Allow scrolling - check if user is actually scrolling
+                          if (isMobile && isFlipped) {
+                            const touchStart = touchStartMap.current.get(`${product.id}-content`);
+                            if (touchStart) {
+                              const touch = e.touches[0];
+                              const deltaY = Math.abs(touch.clientY - touchStart.y);
+                              const scrollDelta = Math.abs(e.currentTarget.scrollTop - touchStart.scrollTop);
+                              
+                              // If user is scrolling, prevent flip
+                              if (deltaY > 5 || scrollDelta > 0) {
+                                touchStartMap.current.delete(`${product.id}-content`);
+                              }
+                            }
+                          }
+                        }}
+                      >
                         <h3 className="product-name-back">{product.name}</h3>
                         {product.subtitle && <p className="product-subtitle-back">{product.subtitle}</p>}
                         

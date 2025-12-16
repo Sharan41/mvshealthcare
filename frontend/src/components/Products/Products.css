@@ -373,14 +373,26 @@
     pointer-events: auto;
   }
   
-  /* Allow touch events to pass through child elements to the card */
-  .product-card-front,
-  .product-card-back {
+  /* Allow touch events to pass through front card to parent for flip */
+  .product-card-front {
     pointer-events: none; /* Let parent handle all touch events */
   }
   
-  /* Don't re-enable pointer events for children - let all touches bubble to parent */
-  /* This ensures tap-to-flip works regardless of where user taps on the card */
+  /* Enable scrolling on card back content */
+  .product-card-back {
+    pointer-events: auto; /* Re-enable to allow scrolling */
+  }
+  
+  /* Ensure scrollable content can receive touch events */
+  .product-card-back-content {
+    pointer-events: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Allow other elements in card back to be interactive */
+  .product-card-back * {
+    pointer-events: auto;
+  }
 }
 
 /* Desktop hover shadow - disabled on mobile */
