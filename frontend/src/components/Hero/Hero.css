@@ -376,11 +376,11 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .hero {
-    padding-top: clamp(20px, 3vh, 40px);
+    padding-top: 0; /* Remove padding to position text exactly below floating objects */
     padding-bottom: clamp(20px, 3vh, 35px);
     min-height: 120vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align to top instead of center */
     justify-content: center;
   }
 
@@ -404,7 +404,7 @@
     align-items: center;
     position: relative;
     z-index: 5;
-    margin-top: 0;
+    margin-top: clamp(160px, 24vh, 180px); /* Position exactly below square floating objects (12% + 72px + navbar) */
   }
 
   .hero-image-wrapper {
@@ -464,7 +464,7 @@
 /* Small Mobile */
 @media (max-width: 480px) {
   .hero {
-    padding-top: clamp(30px, 5vh, 60px);
+    padding-top: 0; /* Remove padding to position text exactly below floating objects */
     padding-bottom: clamp(25px, 4vh, 40px);
     min-height: 110vh;
   }
@@ -477,6 +477,7 @@
   .hero-text {
     text-align: center;
     align-items: center;
+    margin-top: clamp(150px, 22vh, 170px); /* Position exactly below square floating objects on smaller mobile (10% + 72px + navbar) */
   }
 
   .hero-title {

@@ -298,8 +298,7 @@ const Products = () => {
                     className={`product-card ${isFlipped ? 'flipped' : ''}`}
                     data-product-id={product.id}
                     onClick={(e) => {
-                      // Mobile click handler - primary handler for mobile devices
-                      if (!isMobile) return;
+                      // Click handler for both mobile and desktop
                       e.stopPropagation();
                       e.preventDefault();
                       handleCardFlip(product.id, e);
