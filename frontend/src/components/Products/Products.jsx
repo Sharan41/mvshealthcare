@@ -298,7 +298,7 @@ const Products = () => {
                     className={`product-card ${isFlipped ? 'flipped' : ''}`}
                     data-product-id={product.id}
                     onClick={(e) => {
-                      // Desktop click handler - also works as fallback for mobile
+                      // Mobile click handler - primary handler for mobile devices
                       if (!isMobile) return;
                       e.stopPropagation();
                       e.preventDefault();
@@ -307,13 +307,14 @@ const Products = () => {
                     onTouchStart={(e) => {
                       // Track touch start position per card
                       if (isMobile) {
-                        e.stopPropagation();
                         const touch = e.touches[0];
-                        touchStartMap.current.set(product.id, {
-                          x: touch.clientX,
-                          y: touch.clientY,
-                          time: Date.now()
-                        });
+                        if (touch) {
+                          touchStartMap.current.set(product.id, {
+                            x: touch.clientX,
+                            y: touch.clientY,
+                            time: Date.now()
+                          });
+                        }
                       }
                     }}
                     onTouchEnd={(e) => {
@@ -326,7 +327,7 @@ const Products = () => {
                       const touchStart = touchStartMap.current.get(product.id);
                       
                       // If we have touch start data for this card
-                      if (touchStart) {
+                      if (touchStart && e.changedTouches && e.changedTouches[0]) {
                         const touch = e.changedTouches[0];
                         
                         // Calculate movement distance
@@ -334,8 +335,8 @@ const Products = () => {
                         const deltaY = Math.abs(touch.clientY - touchStart.y);
                         const deltaTime = Date.now() - touchStart.time;
                         
-                        // Only flip if it's a tap (not a swipe) - movement < 15px and time < 500ms
-                        if (deltaX < 15 && deltaY < 15 && deltaTime < 500) {
+                        // Only flip if it's a tap (not a swipe) - movement < 30px and time < 800ms
+                        if (deltaX < 30 && deltaY < 30 && deltaTime < 800) {
                           handleCardFlip(product.id, e);
                         }
                       } else {
