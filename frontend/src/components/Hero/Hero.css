@@ -160,6 +160,22 @@
   z-index: -1;
 }
 
+/* Floating circle background for mobile - positioned above image container */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(231, 229, 215, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+  display: none;
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -290,11 +306,30 @@
     min-height: auto;
   }
 
+  /* Show floating circle on tablet, positioned above image container */
+  .hero::after {
+    display: block;
+    top: 18%;
+    width: 280px;
+    height: 280px;
+    z-index: 4;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
     padding: 0 var(--spacing-lg);
     text-align: center;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 5;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    z-index: 2;
   }
 
   .hero-text-wrapper {
@@ -341,24 +376,43 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .hero {
-    padding-top: clamp(80px, 12vh, 100px);
-    padding-bottom: clamp(30px, 6vh, 40px);
-    min-height: auto;
+    padding-top: clamp(100px, 18vh, 140px);
+    padding-bottom: clamp(60px, 12vh, 100px);
+    min-height: 120vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Show floating circle on mobile, positioned above image container */
+  .hero::after {
+    display: block;
+    top: 15%;
+    width: 250px;
+    height: 250px;
+    z-index: 4;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: clamp(var(--spacing-2xl), 8vh, var(--spacing-4xl));
     padding: 0 var(--spacing-md);
   }
 
   .hero-text {
     text-align: left;
     align-items: flex-start;
+    position: relative;
+    z-index: 5;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    z-index: 2;
   }
 
   .hero-title {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: clamp(var(--spacing-md), 3vh, var(--spacing-lg));
     font-size: clamp(2rem, 8vw, 3rem);
     text-align: left;
     align-items: flex-start;
@@ -371,13 +425,14 @@
   }
 
   .hero-tagline {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: clamp(var(--spacing-sm), 2vh, var(--spacing-md));
+    margin-top: clamp(var(--spacing-md), 3vh, var(--spacing-lg));
     font-size: clamp(1rem, 4vw, 1.25rem);
     text-align: left;
   }
 
   .hero-description {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: clamp(var(--spacing-lg), 4vh, var(--spacing-2xl));
     font-size: clamp(0.9375rem, 3vw, 1rem);
     line-height: 1.7;
     text-align: left;
@@ -396,13 +451,13 @@
 /* Small Mobile */
 @media (max-width: 480px) {
   .hero {
-    padding-top: clamp(70px, 10vh, 80px);
-    padding-bottom: clamp(20px, 4vh, 30px);
-    min-height: auto;
+    padding-top: clamp(90px, 16vh, 120px);
+    padding-bottom: clamp(50px, 10vh, 80px);
+    min-height: 110vh;
   }
 
   .hero-content {
-    gap: var(--spacing-lg);
+    gap: clamp(var(--spacing-xl), 7vh, var(--spacing-3xl));
     padding: 0 var(--spacing-sm);
   }
 
@@ -436,13 +491,13 @@
 /* Extra Small Mobile */
 @media (max-width: 360px) {
   .hero {
-    padding-top: 60px;
-    padding-bottom: 20px;
-    min-height: auto;
+    padding-top: clamp(80px, 14vh, 100px);
+    padding-bottom: clamp(40px, 8vh, 60px);
+    min-height: 105vh;
   }
 
   .hero-content {
-    gap: var(--spacing-md);
+    gap: clamp(var(--spacing-lg), 6vh, var(--spacing-2xl));
   }
 
   .hero-title {

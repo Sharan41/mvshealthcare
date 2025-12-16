@@ -4,6 +4,44 @@
   overflow: visible;
 }
 
+/* Section Divider - Visual separation between Products and About Us */
+.about-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.3) 80%,
+    transparent 100%
+  );
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.about-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(92, 133, 214, 0.95) 0%,
+    rgba(92, 133, 214, 0.7) 30%,
+    rgba(61, 80, 157, 0.5) 60%,
+    transparent 100%
+  );
+  z-index: 9;
+  pointer-events: none;
+}
+
 .about {
   background: linear-gradient(135deg, #3d509d 0%, #5a6bb8 50%, #7b8fd1 100%);
   position: relative;
@@ -554,8 +592,8 @@
 /* Enhanced Vision card content - UX Optimized for Reading Engagement */
 .vision-card .vision-content {
   margin-bottom: var(--spacing-xl);
-  line-height: 1.9;
-  font-size: 1.15rem;
+  line-height: 1.85;
+  font-size: 1.1rem;
   color: #34495e;
   position: relative;
   padding-bottom: var(--spacing-lg);
@@ -577,6 +615,60 @@
   /* UX: Paragraph spacing creates visual breaks */
   margin-top: 0;
 }
+
+/* Vision content paragraph styling with improved hierarchy */
+.vision-card .vision-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.vision-card .vision-content p {
+  margin-bottom: 0;
+  position: relative;
+  padding-left: var(--spacing-lg);
+  border-left: 3px solid rgba(176, 188, 161, 0.25);
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.vision-card .vision-content p:first-child {
+  margin-top: 0;
+  font-weight: 500;
+  color: #2c3e50;
+  border-left-color: rgba(176, 188, 161, 0.45);
+  background: linear-gradient(180deg, rgba(176, 188, 161, 0.03) 0%, transparent 100%);
+  border-radius: 4px;
+  padding-left: var(--spacing-lg);
+}
+
+.vision-card .vision-content p:last-child {
+  margin-bottom: 0;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.vision-card:hover .vision-content p {
+  border-left-color: rgba(176, 188, 161, 0.35);
+}
+
+.vision-card:hover .vision-content p:first-child {
+  border-left-color: rgba(176, 188, 161, 0.55);
+  background: linear-gradient(180deg, rgba(176, 188, 161, 0.05) 0%, transparent 100%);
+}
+
+/* Vision content emphasis spans */
+.vision-card .vision-content strong,
+.vision-card .vision-content em {
+  color: var(--color-primary-green);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Vision content decorative element - removed as it conflicts with paragraph structure */
 
 .mission-points {
   list-style: none;
@@ -604,7 +696,7 @@
 
 .mission-points li {
   padding: var(--spacing-lg) 0;
-  padding-left: var(--spacing-3xl);
+  padding-left: 48px;
   position: relative;
   color: #2c3e50;
   line-height: 1.9;
@@ -622,13 +714,13 @@
 
 /* Enhanced Mission card list items - UX Optimized for Easy Scanning */
 .mission-card .mission-points li {
-  padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-3xl);
+  padding: var(--spacing-xs) 0 var(--spacing-xs) 40px;
   margin-bottom: var(--spacing-xs);
   line-height: 1.75;
   font-size: 1.05rem;
   color: #34495e;
   border-left: 3px solid rgba(61, 80, 157, 0.15);
-  padding-left: var(--spacing-3xl);
+  padding-left: 40px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   text-rendering: optimizeLegibility;
@@ -646,12 +738,12 @@
   transform: translateX(4px);
   background: rgba(61, 80, 157, 0.02);
   border-radius: 4px;
-  padding-left: calc(var(--spacing-3xl) + 4px);
+  padding-left: 44px;
 }
 
 .mission-card .mission-points li:hover {
   border-left-color: rgba(61, 80, 157, 0.3);
-  padding-left: calc(var(--spacing-3xl) + 4px);
+  padding-left: 44px;
   color: #2c3e50;
   transform: translateX(2px);
 }
@@ -663,9 +755,9 @@
   top: var(--spacing-md);
   color: var(--color-white);
   font-weight: 900;
-  font-size: 1.1rem;
-  width: 36px;
-  height: 36px;
+  font-size: 0.9rem;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -679,6 +771,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   transform: scale(1);
   border: 2px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 
 .mission-points li:hover::before {
@@ -756,6 +849,36 @@
   /* No special hover effects - plain text */
 }
 
+/* Section Divider - Mobile and Tablet adjustments */
+@media (max-width: 968px) {
+  .about-wrapper::after {
+    height: 60px;
+    background: linear-gradient(
+      180deg,
+      rgba(92, 133, 214, 0.9) 0%,
+      rgba(92, 133, 214, 0.6) 40%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .about-wrapper::before {
+    height: 1px;
+    box-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
+  }
+
+  .about-wrapper::after {
+    height: 50px;
+    background: linear-gradient(
+      180deg,
+      rgba(92, 133, 214, 0.85) 0%,
+      rgba(92, 133, 214, 0.5) 50%,
+      transparent 100%
+    );
+  }
+}
+
 /* Tablet Styles */
 @media (max-width: 968px) {
   .about {
@@ -768,6 +891,13 @@
   .about .section-title {
     font-size: clamp(2rem, 6vw, 2.5rem);
     margin-bottom: 0;
+    background: linear-gradient(135deg, var(--color-white) 0%, rgba(255, 255, 255, 0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+    font-weight: 900;
   }
 
   .about-carousel-wrapper {
@@ -887,7 +1017,7 @@
 
   .mission-points li {
     font-size: clamp(0.9375rem, 2.5vw, 1rem);
-    padding-left: var(--spacing-2xl);
+    padding-left: 40px;
   }
 
   .mission-points li::before {
@@ -905,13 +1035,21 @@
 
   .about .section-title {
     font-size: clamp(1.75rem, 7vw, 2.25rem);
-    margin-bottom: 0;
+    margin-top: clamp(40px, 8vh, 60px);
+    margin-bottom: clamp(30px, 6vh, 50px);
     padding: 0 var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-white) 0%, rgba(255, 255, 255, 0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+    font-weight: 900;
   }
 
   .about-carousel-wrapper {
     padding: 0 var(--spacing-md);
-    margin-top: var(--spacing-md);
+    margin-top: clamp(30px, 6vh, 50px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -930,27 +1068,38 @@
     max-width: 100%;
     margin-bottom: var(--spacing-lg);
     border-radius: 20px;
+    height: auto;
+    min-height: auto;
+    max-height: none;
   }
 
   .about-card-header {
-    min-height: 180px;
-    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: 140px;
+    padding: clamp(20px, 5vh, 28px) clamp(20px, 5vw, 28px) !important;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+  }
+
+  /* Decrease padding for Vision card header in mobile view */
+  .vision-card .about-card-header {
+    padding: clamp(12px, 3vh, 18px) clamp(20px, 5vw, 28px) !important;
+    min-height: auto;
   }
 
   .about-card-title-large {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: clamp(1.5rem, 7vw, 2rem);
     text-align: center;
     width: 100%;
+    margin-bottom: var(--spacing-xs);
   }
 
   .card-icon {
-    width: clamp(90px, 20vw, 110px);
-    height: clamp(90px, 20vw, 110px);
-    margin: var(--spacing-sm) auto;
+    width: clamp(70px, 16vw, 90px);
+    height: clamp(70px, 16vw, 90px);
+    margin: var(--spacing-xs) auto var(--spacing-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -962,11 +1111,11 @@
   }
 
   .card-icon svg {
-    width: 60px;
-    height: 60px;
+    width: clamp(35px, 8vw, 45px);
+    height: clamp(35px, 8vw, 45px);
     display: block;
     margin: 0 auto;
-    transform: translateY(4px);
+    transform: translateY(2px);
   }
 
   /* Remove hover scale effect on mobile */
@@ -1009,23 +1158,66 @@
   }
 
   .about-card-content {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-sm);
   }
 
   .mission-card .about-card-content,
   .vision-card .about-card-content {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-sm);
+    margin-top: 0;
   }
 
   .about-card h3 {
-    font-size: clamp(1.25rem, 5vw, 1.75rem);
-    margin-bottom: var(--spacing-md);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    margin-bottom: var(--spacing-sm);
   }
 
-  .mission-content,
-  .vision-content {
-    font-size: clamp(0.9375rem, 3.5vw, 1rem);
+  .mission-card .mission-content,
+  .vision-card .vision-content {
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem) !important;
     margin-bottom: var(--spacing-md);
+    line-height: 1.55;
+  }
+
+  /* Mission card content styling - matching Vision card visibility */
+  .mission-card .mission-content {
+    position: relative;
+    padding-left: var(--spacing-lg) !important;
+    padding-top: var(--spacing-sm) !important;
+    padding-bottom: var(--spacing-sm) !important;
+    border-left: 3px solid rgba(61, 80, 157, 0.35) !important;
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
+    background: linear-gradient(180deg, rgba(61, 80, 157, 0.03) 0%, transparent 100%);
+    border-radius: 4px;
+    margin-bottom: var(--spacing-md) !important;
+  }
+
+  /* Remove purple line at bottom of first paragraph in mobile view */
+  .mission-card .mission-content::after {
+    display: none !important;
+  }
+
+  .mission-card .mission-conclusion {
+    position: relative;
+    padding-left: var(--spacing-lg) !important;
+    padding-top: var(--spacing-sm) !important;
+    padding-bottom: var(--spacing-sm) !important;
+    border-left: 3px solid rgba(61, 80, 157, 0.25) !important;
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
+    margin-top: var(--spacing-sm) !important;
+  }
+
+  .vision-card .vision-content p {
+    padding-left: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .vision-card .vision-content p:first-child {
+    padding-left: var(--spacing-md);
   }
 
   .mission-points {
@@ -1037,11 +1229,15 @@
     padding: var(--spacing-sm) var(--spacing-xs);
   }
 
-  .mission-points li {
-    font-size: clamp(0.875rem, 3vw, 0.9375rem);
-    padding-left: var(--spacing-xl);
-    margin-bottom: var(--spacing-xs);
-    line-height: 1.6;
+  .mission-card .mission-points li {
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem) !important;
+    padding-left: 38px;
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.55;
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
   }
 
   .mission-points li::before {
@@ -1049,15 +1245,13 @@
     height: 28px;
     font-size: 0.9rem;
     top: var(--spacing-xs);
-  }
-
-  .mission-conclusion {
-    font-size: clamp(0.9375rem, 3vw, 1rem);
-    margin-top: var(--spacing-sm);
+    left: 0;
   }
 
   .mission-card .mission-conclusion {
-    font-size: clamp(0.875rem, 2.5vw, 0.9375rem);
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem) !important;
+    margin-top: var(--spacing-sm);
+    line-height: 1.55;
   }
 }
 
@@ -1071,6 +1265,13 @@
     font-size: clamp(1.5rem, 8vw, 2rem);
     margin-bottom: var(--spacing-md);
     padding: 0 var(--spacing-sm);
+    background: linear-gradient(135deg, var(--color-white) 0%, rgba(255, 255, 255, 0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+    font-weight: 900;
   }
 
   .about-carousel-wrapper {
@@ -1096,26 +1297,27 @@
   }
 
   .about-card-header {
-    min-height: 160px;
-    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: 120px;
+    padding: var(--spacing-xs) var(--spacing-sm);
     overflow: hidden;
     position: relative;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .about-card-title-large {
-    font-size: clamp(1.75rem, 10vw, 2.5rem);
+    font-size: clamp(1.5rem, 9vw, 2rem);
     margin-bottom: var(--spacing-xs);
     text-align: center;
     width: 100%;
   }
 
   .card-icon {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     position: relative;
     bottom: auto;
     left: auto;
@@ -1126,37 +1328,60 @@
   }
 
   .card-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   .about-card-content {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
 
   .mission-card .about-card-content,
   .vision-card .about-card-content {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-top: 0;
   }
 
   .about-card h3 {
-    font-size: clamp(1.125rem, 5vw, 1.5rem);
+    font-size: clamp(0.9375rem, 3.5vw, 1.125rem);
+    margin-bottom: var(--spacing-xs);
   }
 
-  .mission-content,
-  .vision-content {
-    font-size: 0.875rem;
+  .mission-card .mission-content,
+  .vision-card .vision-content {
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem) !important;
+    line-height: 1.55;
+  }
+
+  .vision-card .vision-content p {
+    padding-left: var(--spacing-sm);
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    border-left-width: 2px;
+  }
+
+  .vision-card .vision-content p:first-child {
+    padding-left: var(--spacing-sm);
   }
 
   .mission-points li {
-    font-size: 0.875rem;
-    padding-left: var(--spacing-lg);
+    font-size: clamp(0.6875rem, 2.3vw, 0.75rem);
+    padding-left: 30px;
+    line-height: 1.5;
   }
 
   .mission-points li::before {
-    width: 24px;
-    height: 24px;
-    font-size: 0.8rem;
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+    top: var(--spacing-xs);
+    left: 0;
+  }
+
+  .mission-card .mission-conclusion {
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem) !important;
+    line-height: 1.55;
   }
 }
 
@@ -1186,7 +1411,7 @@
   }
 
   .mission-points li {
-    padding-left: var(--spacing-md);
+    padding-left: 30px;
   }
 }
 

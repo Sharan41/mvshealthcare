@@ -624,6 +624,39 @@
     min-height: 400px;
     margin-top: var(--spacing-md);
     padding: var(--spacing-md) 0;
+    position: relative;
+  }
+
+  /* Tablet chevron arrows - clean without circle */
+  .carousel-arrow-mobile {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    opacity: 0.8;
+  }
+
+  .carousel-arrow-mobile:hover {
+    opacity: 1;
+    background: transparent !important;
+    transform: translateY(-50%) scale(1.1) !important;
+    box-shadow: none !important;
+  }
+
+  .carousel-arrow-mobile svg {
+    stroke-width: 2.8;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  .carousel-arrow-left.carousel-arrow-mobile {
+    left: 15px !important;
+  }
+
+  .carousel-arrow-right.carousel-arrow-mobile {
+    right: 15px !important;
   }
 
   .features-container {
@@ -674,6 +707,47 @@
     min-height: 350px;
     margin-top: var(--spacing-md);
     padding: var(--spacing-sm) 0;
+    position: relative;
+  }
+
+  /* Mobile chevron arrows - clean without circle, highly visible */
+  .carousel-arrow-mobile {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 48px !important;
+    height: 48px !important;
+    opacity: 1 !important;
+    z-index: 20 !important;
+  }
+
+  .carousel-arrow-mobile:hover {
+    opacity: 1 !important;
+    background: transparent !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: none !important;
+  }
+
+  .carousel-arrow-mobile:active {
+    transform: translateY(-50%) scale(1.05) !important;
+  }
+
+  .carousel-arrow-mobile svg {
+    stroke-width: 3.5 !important;
+    width: 28px !important;
+    height: 28px !important;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    color: var(--color-primary-blue) !important;
+  }
+
+  .carousel-arrow-left.carousel-arrow-mobile {
+    left: 8px !important;
+  }
+
+  .carousel-arrow-right.carousel-arrow-mobile {
+    right: 8px !important;
   }
 
   .features-container {
@@ -703,9 +777,9 @@
   }
 
   .feature-card p {
-    font-size: clamp(0.875rem, 3vw, 0.9375rem);
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem);
     margin-top: var(--spacing-sm);
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
   /* Adjust organic shapes for mobile */

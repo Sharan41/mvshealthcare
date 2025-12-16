@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { WHY_CHOOSE_US } from '../../utils/constants';
 import './WhyChooseUs.css';
 
@@ -7,6 +7,9 @@ const WhyChooseUs = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+  const containerRef = useRef(null);
   
   useEffect(() => {
     const checkMobile = () => {
@@ -26,6 +29,34 @@ const WhyChooseUs = () => {
   const handleNext = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev === WHY_CHOOSE_US.length - 1 ? 0 : prev + 1));
+  };
+
+  // Touch/swipe handlers for mobile
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    if (!isMobile) return;
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e) => {
+    if (!isMobile) return;
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!isMobile || !touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
   };
 
   const handleCardClick = (clickedCardIndex, clickedPosition) => {
@@ -125,19 +156,24 @@ const WhyChooseUs = () => {
           
           <div className="features-carousel-wrapper">
             {/* Left Arrow */}
-            {!isMobile && (
-              <button
-                className="carousel-arrow carousel-arrow-left"
-                onClick={handlePrevious}
-                aria-label="Previous card"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            )}
+            <button
+              className={`carousel-arrow carousel-arrow-left ${isMobile ? 'carousel-arrow-mobile' : ''}`}
+              onClick={handlePrevious}
+              aria-label="Previous card"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
 
-            <div className="features-container-wrapper">
+            <div 
+              className="features-container-wrapper"
+              ref={containerRef}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              style={{ touchAction: 'pan-y' }}
+            >
               <motion.div 
                 className="features-container"
                 key={currentIndex}
@@ -181,17 +217,15 @@ const WhyChooseUs = () => {
             </div>
 
             {/* Right Arrow */}
-            {!isMobile && (
-              <button
-                className="carousel-arrow carousel-arrow-right"
-                onClick={handleNext}
-                aria-label="Next card"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            )}
+            <button
+              className={`carousel-arrow carousel-arrow-right ${isMobile ? 'carousel-arrow-mobile' : ''}`}
+              onClick={handleNext}
+              aria-label="Next card"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
           </div>
         </div>
       </section>

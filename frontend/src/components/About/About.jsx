@@ -184,9 +184,14 @@ const About = () => {
                     </div>
                 </div>
                     <div className="about-card-content">
-                  <p className="vision-content">
-                    {VISION.content}
-                  </p>
+                  <div className="vision-content">
+                    <p>
+                      <strong>Our vision</strong> is to become a trusted leader in the medical disposables industry by delivering products that set new benchmarks in safety, quality, and innovation.
+                    </p>
+                    <p>
+                      We aspire to create a healthcare ecosystem where every provider—regardless of size or location—has access to reliable, affordable, and world-class disposable solutions that elevate patient care and support healthier communities.
+                    </p>
+                  </div>
                     </div>
                   </motion.div>
             </div>
