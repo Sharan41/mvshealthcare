@@ -475,23 +475,6 @@
   transition: all 0.3s ease;
 }
 
-/* Surgical Products - Enhance Blue Color Visibility */
-.product-card[data-product-id="surgical-gowns"] .product-image,
-.product-card[data-product-id="surgical-kit"] .product-image,
-.product-card[data-product-id="surgical-towel"] .product-image,
-.product-card[data-product-id="hiv-kit"] .product-image,
-.product-card[data-product-id="orthopaedic-kit"] .product-image {
-  filter: saturate(1.3) brightness(1.05) contrast(1.1);
-  /* Increase saturation to make blue more vibrant, slight brightness boost, and contrast enhancement */
-}
-
-/* Gauze Swabs and Cotton Rolls - Enhance White Color Visibility */
-.product-card[data-product-id="gauze-sponge"] .product-image,
-.product-card[data-product-id="gamjee-roll-cotton"] .product-image {
-  filter: brightness(1.15) contrast(1.2) saturate(0.95);
-  /* Increase brightness and contrast to make white more visible, slight desaturation for cleaner whites */
-}
-
 /* Urine Collection Bag - Larger Image Size */
 .product-card[data-product-id="urine-collection-bag"] .product-image-container {
   height: 240px; /* Increased from 200px */
