@@ -7,11 +7,11 @@ export const COMPANY_INFO = {
     "Reliable Distribution"
   ],
   address: {
-    line1: "D.no.2-5-2, First Floor",
-    line2: "Kummari Vari Street, Kavali",
-    district: "Dist. SPSR Nellore",
+    line1: "MVS Healthcare",
+    line2: "27/4/1015, Jagadeesh Nagar 2nd Lane",
+    district: "Nellore",
     state: "Andhra Pradesh",
-    pincode: "524201",
+    pincode: "524002",
     country: "India"
   },
   contact: {

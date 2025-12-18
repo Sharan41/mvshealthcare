@@ -33,19 +33,57 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // EmailJS integration will be added here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry! We will contact you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: '',
-      productInterest: ''
-    });
+    
+    // Formspree integration
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('company', formData.company);
+    formDataToSend.append('productInterest', formData.productInterest);
+    formDataToSend.append('message', formData.message);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mpqaavpq', {
+        method: 'POST',
+        body: formDataToSend,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert('Thank you for your inquiry! We will contact you soon.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+          productInterest: ''
+        });
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          alert('There was an error submitting the form. Please try again.');
+        } else {
+          alert('Thank you for your inquiry! We will contact you soon.');
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            message: '',
+            productInterest: ''
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    }
   };
 
   const emailLink = `mailto:${COMPANY_INFO.contact.email}`;
