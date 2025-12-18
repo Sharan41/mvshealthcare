@@ -6,6 +6,8 @@ import './Contact.css';
 
 const Contact = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   
   useEffect(() => {
     const checkMobile = () => {
@@ -35,6 +37,8 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
     
     // Formspree integration
     const formDataToSend = new FormData();
@@ -55,7 +59,7 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        alert('Thank you for your inquiry! We will contact you soon.');
+        setSubmitStatus('success');
         setFormData({
           name: '',
           email: '',
@@ -64,25 +68,22 @@ const Contact = () => {
           message: '',
           productInterest: ''
         });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus(null), 5000);
       } else {
         const data = await response.json();
-        if (data.errors) {
-          alert('There was an error submitting the form. Please try again.');
-        } else {
-          alert('Thank you for your inquiry! We will contact you soon.');
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            company: '',
-            message: '',
-            productInterest: ''
-          });
-        }
+        setSubmitStatus('error');
+        console.error('Form submission error:', data);
+        // Clear error message after 5 seconds
+        setTimeout(() => setSubmitStatus(null), 5000);
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('There was an error submitting the form. Please try again.');
+      setSubmitStatus('error');
+      // Clear error message after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -286,9 +287,25 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-ripple">
-                Send Message
+              <button 
+                type="submit" 
+                className="btn btn-primary btn-ripple"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              
+              {submitStatus === 'success' && (
+                <div className="form-message form-success">
+                  ✓ Thank you for your inquiry! We will contact you soon.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="form-message form-error">
+                  ✗ There was an error submitting the form. Please try again or contact us directly.
+                </div>
+              )}
             </form>
           </motion.div>
         </motion.div>
