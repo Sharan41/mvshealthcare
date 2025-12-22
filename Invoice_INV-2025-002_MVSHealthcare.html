@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVS Healthcare - Website Development Invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            padding: 20px;
+        }
+        
+        .invoice-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .invoice-header {
+            text-align: center;
+            border-bottom: 3px solid #3d509d;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .invoice-header h1 {
+            color: #3d509d;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .invoice-header h2 {
+            color: #545c37;
+            font-size: 20px;
+            font-weight: normal;
+        }
+        
+        .invoice-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .invoice-details {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .invoice-details h3 {
+            color: #3d509d;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .invoice-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .project-summary {
+            background: #f6f6f4;
+            padding: 20px;
+            border-left: 4px solid #3d509d;
+            margin-bottom: 30px;
+        }
+        
+        .project-summary h3 {
+            color: #3d509d;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-section {
+            margin-bottom: 30px;
+        }
+        
+        .pricing-section h2 {
+            color: #3d509d;
+            font-size: 22px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e7e5d7;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        table th {
+            background: #3d509d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e7e5d7;
+        }
+        
+        table tr:hover {
+            background: #f6f6f4;
+        }
+        
+        .subtotal {
+            font-weight: bold;
+            color: #3d509d;
+        }
+        
+        .pricing-summary {
+            background: #f6f6f4;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .pricing-summary table {
+            margin-bottom: 0;
+        }
+        
+        .pricing-summary table td {
+            border-bottom: none;
+        }
+        
+        .final-total {
+            background: #3d509d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .deliverables {
+            margin-top: 30px;
+        }
+        
+        .deliverables h3 {
+            color: #3d509d;
+            margin-bottom: 15px;
+        }
+        
+        .deliverables ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .deliverables li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .deliverables li:before {
+            content: "☑";
+            position: absolute;
+            left: 0;
+            color: #545c37;
+            font-weight: bold;
+        }
+        
+        .payment-terms {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f6f6f4;
+        }
+        
+        .payment-terms h3 {
+            color: #3d509d;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e7e5d7;
+            text-align: center;
+        }
+        
+        .contact-info h3 {
+            color: #3d509d;
+            margin-bottom: 10px;
+        }
+        
+        .terms-conditions {
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 2px solid #e7e5d7;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .terms-conditions h3 {
+            color: #3d509d;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .terms-conditions ol {
+            padding-left: 20px;
+        }
+        
+        .terms-conditions li {
+            margin: 5px 0;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 2px solid #e7e5d7;
+        }
+        
+        .signature-box {
+            width: 45%;
+        }
+        
+        .signature-box p {
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .invoice-container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            @page {
+                margin: 1cm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>MVS HEALTHCARE - WEBSITE DEVELOPMENT INVOICE</h1>
+            <h2>Invoice Number: INV-2025-002</h2>
+        </div>
+        
+        <div class="invoice-info">
+            <div class="invoice-details">
+                <h3>Invoice Details</h3>
+                <p><strong>Invoice Date:</strong> December 15, 2025</p>
+                <p><strong>Invoice To:</strong> MVS Healthcare Pvt. Ltd.</p>
+                <p><strong>Project:</strong> Medical Disposables Catalogue Website</p>
+            </div>
+            
+            <div class="invoice-details">
+                <h3>Service Provider</h3>
+                <p><strong>Name:</strong> Sai Sharan V</p>
+                <p><strong>Contact:</strong> +91 6383991383</p>
+                <p><strong>Email:</strong> saisharanvishnu@gmail.com</p>
+                <p><strong>Tax Status:</strong> Individual Freelancer | GST: Not Applicable</p>
+            </div>
+        </div>
+        
+        <div class="project-summary">
+            <h3>PROJECT SUMMARY</h3>
+            <p>Modern single-page application (SPA) catalogue website for MVS Healthcare showcasing 15+ medical disposable products. Features premium geometric design elements, responsive mobile-first architecture, interactive animations, and comprehensive contact integration. Built with React 19 and Vite for optimal performance and scalability.</p>
+        </div>
+        
+        <div class="pricing-section">
+            <h2>1. Website Design & Development</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Single-Page Application Architecture</td>
+                        <td>Modern SPA with smooth scroll navigation covering complete product catalogue journey - from discovery to contact. Strategic information architecture guides users efficiently through products, company information, and contact options.</td>
+                        <td>₹2,000</td>
+                    </tr>
+                    <tr>
+                        <td>Responsive Design</td>
+                        <td>Mobile-first responsive design ensuring seamless experience across all devices (mobile, tablet, laptop, desktop). Critical for mobile healthcare searches - no customer left behind regardless of device.</td>
+                        <td>₹1,500</td>
+                    </tr>
+                    <tr>
+                        <td>Modern UI/UX Design</td>
+                        <td>Premium healthcare UI with geometric design system featuring parallax effects, micro-interactions, and professional color psychology. Professional aesthetics that elevate brand perception and customer confidence.</td>
+                        <td>₹1,200</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="subtotal">
+                        <td colspan="2" style="text-align: right;">Subtotal:</td>
+                        <td>₹4,700</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="pricing-section">
+            <h2>2. Advanced Features & Functionality</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Product Catalogue System</td>
+                        <td>Comprehensive product showcase with 15+ medical disposable products including detailed specifications, features, and high-quality images. Organized product grid with smooth animations and hover effects.</td>
+                        <td>₹1,000</td>
+                    </tr>
+                    <tr>
+                        <td>Geometric Design Elements</td>
+                        <td>Custom geometric shapes with parallax scroll animations, dot grids, and animated patterns. Premium visual elements that enhance brand identity and create engaging user experience.</td>
+                        <td>₹600</td>
+                    </tr>
+                    <tr>
+                        <td>Form Integration</td>
+                        <td>Zero-friction contact form with enterprise-grade Formspree integration. Captures customer inquiries 24/7 with instant email notifications - never miss an opportunity to serve customers.</td>
+                        <td>₹400</td>
+                    </tr>
+                    <tr>
+                        <td>Floating Action Buttons</td>
+                        <td>WhatsApp and Call quick-contact buttons with smooth animations. Enables customers to reach you instantly on their preferred platform - meeting them where they are.</td>
+                        <td>₹300</td>
+                    </tr>
+                    <tr>
+                        <td>Animated Components</td>
+                        <td>Premium micro-interactions including scroll-triggered animations, fade-ins, and smooth transitions using Framer Motion. Professional polish that subconsciously communicates attention to detail.</td>
+                        <td>₹300</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="subtotal">
+                        <td colspan="2" style="text-align: right;">Subtotal:</td>
+                        <td>₹2,600</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="pricing-section">
+            <h2>3. Technical Implementation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>React Development Architecture</td>
+                        <td>Enterprise-grade React 19 architecture with modern Hooks, React Scroll for seamless navigation, and Vite 7 build system. Future-proof, maintainable codebase enabling easy feature additions and scaling.</td>
+                        <td>₹800</td>
+                    </tr>
+                    <tr>
+                        <td>Performance Optimization</td>
+                        <td>Advanced performance engineering: intelligent code splitting, lazy loading, and image optimization delivering fast load times. Fast sites convert better - speed directly impacts customer acquisition.</td>
+                        <td>₹400</td>
+                    </tr>
+                    <tr>
+                        <td>Accessibility & SEO</td>
+                        <td>WCAG AA accessibility compliance with comprehensive ARIA labels, semantic HTML structure, and meta tags. Ensures findability by search engines and usability for all customers including those with disabilities.</td>
+                        <td>₹300</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="subtotal">
+                        <td colspan="2" style="text-align: right;">Subtotal:</td>
+                        <td>₹1,500</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="pricing-section">
+            <h2>4. Content Integration & Optimization</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Content Integration</td>
+                        <td>Strategic integration of client-provided content with information architecture best practices. Professional content structuring ensures customers find critical information (products, company info, contact) within easy navigation.</td>
+                        <td>₹300</td>
+                    </tr>
+                    <tr>
+                        <td>Media Optimization</td>
+                        <td>Intelligent compression and responsive image sizing across all breakpoints. Reduces page weight while maintaining visual quality - critical for mobile users on limited data plans.</td>
+                        <td>₹200</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="subtotal">
+                        <td colspan="2" style="text-align: right;">Subtotal:</td>
+                        <td>₹500</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="pricing-section">
+            <h2>5. Project Setup & Documentation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GitHub Repository Setup</td>
+                        <td>Professional version control infrastructure with Git best practices, structured commit history, and complete codebase documentation. Enables easy collaboration, rollbacks, and future developer onboarding.</td>
+                        <td>₹200</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud Deployment Configuration</td>
+                        <td>Production-ready deployment on Render cloud platform with custom domain, SSL certificate, automatic deployments from Git, and CDN delivery for global performance. Zero hosting costs with enterprise reliability.</td>
+                        <td>₹200</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="subtotal">
+                        <td colspan="2" style="text-align: right;">Subtotal:</td>
+                        <td>₹400</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="pricing-summary">
+            <h2>PRICING SUMMARY</h2>
+            <table>
+                <tr>
+                    <td>Website Design & Development</td>
+                    <td style="text-align: right;">₹4,700</td>
+                </tr>
+                <tr>
+                    <td>Advanced Features & Functionality</td>
+                    <td style="text-align: right;">₹2,600</td>
+                </tr>
+                <tr>
+                    <td>Technical Implementation</td>
+                    <td style="text-align: right;">₹1,500</td>
+                </tr>
+                <tr>
+                    <td>Content Integration & Optimization</td>
+                    <td style="text-align: right;">₹500</td>
+                </tr>
+                <tr>
+                    <td>Project Setup & Documentation</td>
+                    <td style="text-align: right;">₹400</td>
+                </tr>
+                <tr style="border-top: 2px solid #3d509d;">
+                    <td><strong>SUBTOTAL</strong></td>
+                    <td style="text-align: right;"><strong>₹9,700</strong></td>
+                </tr>
+            </table>
+            
+            <table style="margin-top: 20px;">
+                <tr>
+                    <td><strong>Subtotal (Actual Development Work)</strong></td>
+                    <td style="text-align: right;"><strong>₹9,700</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Special Discount</strong></td>
+                    <td style="text-align: right;"><strong>-₹2,200</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>GST (Not Applicable)</strong></td>
+                    <td style="text-align: right;"><strong>₹0</strong></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="final-total">
+            ₹7,500 ONLY<br>
+            <span style="font-size: 16px; font-weight: normal;">(Rupees Seven Thousand Five Hundred Only)</span>
+        </div>
+        
+        <div class="deliverables">
+            <h3>PROJECT DELIVERABLES & INCLUSIONS</h3>
+            
+            <h4 style="color: #545c37; margin-top: 15px; margin-bottom: 10px;">Technical Deliverables</h4>
+            <ul>
+                <li>Complete Website: Single-page application with 5 main sections (Hero, Products, About, Why Choose Us, Contact) with smooth scroll navigation</li>
+                <li>Product Catalogue: Showcase of 15+ medical disposable products with detailed specifications, features, and images</li>
+                <li>Responsive Design: Mobile-first design optimized for all screen sizes (mobile, tablet, laptop, desktop - tested on all breakpoints)</li>
+                <li>Interactive Features: Geometric shape animations, parallax scrolling, floating action buttons (WhatsApp & Call), smooth scroll animations</li>
+                <li>Form Integration: Contact form with Formspree backend integration and email notifications</li>
+                <li>Media Integration: Optimized images, responsive image sizing, loading spinner for better UX</li>
+                <li>SEO & Accessibility: Meta tags, semantic HTML, WCAG AA compliance, ARIA labels</li>
+            </ul>
+            
+            <h4 style="color: #545c37; margin-top: 15px; margin-bottom: 10px;">Infrastructure & Deployment</h4>
+            <ul>
+                <li>Live Website: Production deployment on Render with SSL certificate and custom domain</li>
+                <li>Source Code: Complete codebase with full ownership rights transferred upon final payment</li>
+                <li>GitHub Repository: Private repository with complete version history and organized commit structure</li>
+                <li>Documentation: README with setup instructions, deployment guide, and basic maintenance documentation</li>
+            </ul>
+            
+            <h4 style="color: #545c37; margin-top: 15px; margin-bottom: 10px;">Post-Delivery Support</h4>
+            <ul>
+                <li>15-Day Warranty: Bug fixes, minor text updates, and critical functionality issues</li>
+                <li>Knowledge Transfer: Brief handover session explaining website structure and update procedures</li>
+                <li>Technical Support: Email/WhatsApp support for clarifications during warranty period</li>
+            </ul>
+        </div>
+        
+        <div class="payment-terms">
+            <h3>PAYMENT TERMS</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Milestone</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Project Completion & Final Delivery</td>
+                        <td>₹7,500</td>
+                        <td>Due</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>TOTAL INVOICE AMOUNT</strong></td>
+                        <td><strong>₹7,500</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <p style="margin-top: 15px;"><strong>Payment Due:</strong> Full payment due upon project completion, client approval, and handover. Payment accepted via bank transfer, UPI, or cash.</p>
+        </div>
+        
+        <div style="background: #f6f6f4; padding: 20px; margin-top: 30px;">
+            <h3 style="color: #3d509d; margin-bottom: 15px;">SPECIAL CONSIDERATIONS</h3>
+            <p><strong>What Was Provided by Client:</strong></p>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>☑ Domain name - purchased by client</li>
+                <li>☑ All text content and copywriting</li>
+                <li>☑ All images and photographs</li>
+                <li>☑ Company logo and branding materials</li>
+                <li>☑ Free tier hosting (Render)</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>What Was Developed:</strong></p>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>☑ Complete website development (Single-page application)</li>
+                <li>☑ Product catalogue system (15+ products)</li>
+                <li>☑ Interactive features (geometric animations, floating buttons, forms)</li>
+                <li>☑ Image optimization for web</li>
+                <li>☑ Fully responsive design for all devices</li>
+                <li>☑ GitHub repository and deployment configuration</li>
+            </ul>
+        </div>
+        
+        <div class="contact-info">
+            <h3>CONTACT & SUPPORT</h3>
+            <p>For any questions or clarifications, please contact:</p>
+            <p><strong>Developer:</strong> Sai Sharan V</p>
+            <p><strong>Email:</strong> saisharanvishnu@gmail.com</p>
+            <p><strong>Phone:</strong> +91 6383991383</p>
+        </div>
+        
+        <div class="terms-conditions">
+            <h3>TERMS & CONDITIONS</h3>
+            <ol>
+                <li><strong>Currency:</strong> All prices are in Indian Rupees (INR)</li>
+                <li><strong>Payment Method:</strong> Bank transfer, UPI, or cash</li>
+                <li><strong>Payment Terms:</strong> Full payment (₹7,500) due upon project completion, delivery, and client approval</li>
+                <li><strong>Ownership:</strong> Complete source code ownership and all rights transfer to client upon final payment</li>
+                <li><strong>Warranty Period:</strong> 15 days post-delivery for bug fixes, minor content updates, and critical issues</li>
+                <li><strong>Out of Scope:</strong> New features, major redesigns, and ongoing maintenance require separate agreement</li>
+                <li><strong>Project Type:</strong> Fixed-price project (not hourly billing)</li>
+                <li><strong>Support:</strong> Best effort support via email/WhatsApp during business hours</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f6f6f4;">
+            <p><strong>Invoice Number:</strong> INV-2025-002</p>
+            <p><strong>Invoice Generated:</strong> December 15, 2025</p>
+            <p><strong>Invoice Valid Till:</strong> January 15, 2026</p>
+            <p style="margin-top: 15px;">Thank you for trusting me with your healthcare company's digital presence!</p>
+        </div>
+        
+        <div class="signature-section">
+            <div class="signature-box">
+                <p><strong>Client Signature:</strong><br>MVS Healthcare Pvt. Ltd.<br>Date: _______________</p>
+            </div>
+            <div class="signature-box">
+                <p><strong>Service Provider Signature:</strong><br>Sai Sharan V<br>Date: _______________</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; font-size: 11px; color: #999;">
+            <p>This is a computer-generated invoice. For authenticity, authorized signatures are required.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FaDownload, FaFilePdf } from 'react-icons/fa';
 import productsData from '../../data/products.json';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './Products.css';
@@ -611,30 +612,35 @@ const Products = () => {
             ease: [0.16, 1, 0.3, 1]
           }}
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.a
+            href="/MVS-Brochure.pdf"
+            download="MVS-Brochure.pdf"
+            className="btn-download-brochure"
+            whileHover={{ 
+              scale: 1.05,
+              y: -4,
+              transition: { type: "spring", stiffness: 400, damping: 17 }
+            }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: 0.6,
+              type: "spring",
+              stiffness: 200,
+              damping: 20
+            }}
           >
-            <a
-              href="/MVS-Brochure.pdf"
-              download="MVS-Brochure.pdf"
-              className="btn btn-secondary"
-            >
-              Download MVS Brochure
-            </a>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <a
-              href="/MVS-Price-List.pdf"
-              download="MVS-Price-List.pdf"
-              className="btn btn-secondary"
-            >
-              Download MVS Price List
-            </a>
-          </motion.div>
+            <span className="btn-download-icon-wrapper">
+              <FaFilePdf className="btn-download-icon pdf-icon" />
+              <FaDownload className="btn-download-icon download-icon" />
+            </span>
+            <span className="btn-download-text">
+              <span className="btn-download-label">Download</span>
+              <span className="btn-download-filename">MVS Brochure</span>
+            </span>
+            <span className="btn-download-shine"></span>
+          </motion.a>
         </motion.div>
       </div>
     </motion.section>
