@@ -115,6 +115,8 @@ const Hero = () => {
                 src="/images/hero-banner.png" 
                 alt="MVS Healthcare Products"
                 className="hero-banner-image"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
           </motion.div>

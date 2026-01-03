@@ -190,25 +190,25 @@ const Products = () => {
       'infusion-sets': '/images/infusion-sets.png',
       'iv-cannula': '/images/iv-cannula.png',
       'urine-collection-bag': '/images/urine-collection-bag.png',
-      'gauze-sponge': '/images/gauze-sponge.png',
-      'gauze-cloth': '/images/gauze-cloth.png',
-      'gamjee-roll': '/images/gamjee-roll.png',
-      'gamjee-roll-cotton': '/images/gamjee-roll-cotton.png',
-      'surgical-towel': '/images/surgical-towel.png',
-      'bed-sheet-sets': '/images/bed-sheet-sets.png',
-      'surgical-gowns': '/images/surgical-gowns.png',
-      'dressing-kit': '/images/dressing-kit.png',
-      'surgical-kit': '/images/surgical-kit.png',
-      'hiv-kit': '/images/hiv-kit.png',
-      'orthopaedic-kit-major': '/images/orthopaedic-kit.png',
-      'orthopaedic-kit-minor': '/images/orthopaedic-kit.png',
-      'dialysis-on-off': '/images/dressing-kit.png',
-      'lscs-kit': '/images/orthopaedic-kit.png',
-      'general-kit': '/images/dressing-kit.png',
-      'dressing-kit-ortho': '/images/dressing-kit.png',
-      'eto-reinforced-gown': '/images/surgical-gowns.png',
-      'tkr-kit': '/images/surgical-kit.png',
-      'laparoscopy-kit': '/images/orthopaedic-kit.png'
+      'gauze-sponge': '/images/gauze-sponge.jpg',
+      'gauze-cloth': '/images/gauze-cloth.jpg',
+      'gamjee-roll': '/images/gamjee-roll.jpg',
+      'gamjee-roll-cotton': '/images/gamjee-roll-cotton.jpg',
+      'surgical-towel': '/images/surgical-towel.jpg',
+      'bed-sheet-sets': '/images/bed-sheet-sets.jpg',
+      'surgical-gowns': '/images/surgical-gowns.jpg',
+      'dressing-kit': '/images/dressing-kit.jpg',
+      'surgical-kit': '/images/surgical-kit.jpg',
+      'hiv-kit': '/images/hiv-kit.jpg',
+      'orthopaedic-kit-major': '/images/orthopaedic-kit.jpg',
+      'orthopaedic-kit-minor': '/images/orthopaedic-kit.jpg',
+      'dialysis-on-off': '/images/dressing-kit.jpg',
+      'lscs-kit': '/images/orthopaedic-kit.jpg',
+      'general-kit': '/images/dressing-kit.jpg',
+      'dressing-kit-ortho': '/images/dressing-kit.jpg',
+      'eto-reinforced-gown': '/images/surgical-gowns.jpg',
+      'tkr-kit': '/images/surgical-kit.jpg',
+      'laparoscopy-kit': '/images/orthopaedic-kit.jpg'
     };
     return imageMap[productId] || null;
   };
@@ -374,6 +374,8 @@ const Products = () => {
                             src={getProductImage(product.id)} 
                             alt={product.name}
                             className="product-image"
+                            loading="lazy"
+                            decoding="async"
                             onError={(e) => {
                               e.target.style.display = 'none';
                               e.target.nextSibling.style.display = 'flex';
