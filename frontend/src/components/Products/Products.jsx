@@ -285,7 +285,7 @@ const Products = () => {
             variants={gridVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: window.innerWidth <= 968 ? 0.1 : 0.2, margin: "0px" }}
+            viewport={{ once: true, amount: window.innerWidth <= 968 ? 0 : 0.2, margin: "0px" }}
             key={selectedCategory}
           >
             {filteredProducts.map((product, index) => {
@@ -297,7 +297,7 @@ const Products = () => {
                   variants={cardVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: window.innerWidth <= 968 ? 0.1 : 0.2, margin: "0px" }}
+                  viewport={{ once: true, amount: window.innerWidth <= 968 ? 0 : 0.2, margin: "0px" }}
                   onClick={(e) => {
                     // Prevent wrapper from interfering with card clicks
                     e.stopPropagation();
