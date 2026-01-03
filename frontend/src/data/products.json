@@ -3,7 +3,7 @@
     {
       "id": "disposable-syringes",
       "category": "Disposable Syringes",
-      "name": "MVS GRANDEUR Disposable Syringes",
+      "name": "MVS GRANDEUR DISPOSABLE SYRINGES",
       "description": "High quality disposable syringes with premium medical grade materials",
       "features": [
         "High clarity transparent barrel molded by using Premium Quality Medical Grade Polypropylene",
@@ -20,7 +20,7 @@
     {
       "id": "infusion-sets",
       "category": "Infusion & Transfusion",
-      "name": "Infusion Sets",
+      "name": "INFUSION SETS",
       "description": "Non-vented infusion sets for safe fluid administration",
       "features": [
         "Soft and Kink Free medical grade PVC Tube",
@@ -37,7 +37,7 @@
     {
       "id": "iv-cannula",
       "category": "Infusion & Transfusion",
-      "name": "IV Cannula",
+      "name": "IV CANNULA",
       "subtitle": "with wings and injection port",
       "description": "Thin walled PTFE Teflon catheter for intravenous access",
       "features": [
@@ -56,7 +56,7 @@
     {
       "id": "urine-collection-bag",
       "category": "Urology",
-      "name": "Urine Collection Bag",
+      "name": "URINE COLLECTION BAG",
       "description": "Transparent medical grade PVC urine collection bag",
       "features": [
         "Transparent Medical Grade PVC Urine Bag Cloth",
@@ -70,7 +70,7 @@
     {
       "id": "gauze-sponge",
       "category": "Wound Care",
-      "name": "Gauze Swab",
+      "name": "GAUZE SWAB",
       "description": "Soft and absorbent gauze swabs for medical use",
       "features": [
         "Soft and Absorbent",
@@ -92,7 +92,7 @@
     {
       "id": "gauze-cloth",
       "category": "Wound Care",
-      "name": "Gauze Cloth",
+      "name": "GAUZE CLOTH",
       "description": "Complete length and size gauze cloth",
       "features": [
         "Complete length and size",
@@ -106,7 +106,7 @@
     {
       "id": "gamjee-roll-cotton",
       "category": "Wound Care",
-      "name": "Cotton Roll",
+      "name": "COTTON ROLL",
       "description": "100% cotton roll for medical use",
       "features": [
         "High Absorbency",
@@ -124,7 +124,7 @@
     {
       "id": "gamjee-roll",
       "category": "Wound Care",
-      "name": "Gamjee Roll",
+      "name": "GAMJEE ROLL",
       "description": "High absorbency medical grade cotton roll",
       "features": [
         "High Absorbency",
@@ -140,7 +140,7 @@
     {
       "id": "surgical-towel",
       "category": "Hospital Supplies",
-      "name": "Lab Sponge",
+      "name": "LAB SPONGE",
       "description": "Hygienically packed lab sponge",
       "features": [
         "Hygienically packed",
@@ -153,7 +153,7 @@
     {
       "id": "bed-sheet-sets",
       "category": "Hospital Supplies",
-      "name": "Bed Sheet Sets",
+      "name": "BED SHEET SETS",
       "description": "Disposable bedsheet sets",
       "features": [
         "Disposable bedsheet sets",
@@ -167,7 +167,7 @@
     {
       "id": "surgical-gowns",
       "category": "Hospital Apparels",
-      "name": "Surgical Gowns",
+      "name": "SURGICAL GOWNS",
       "description": "Soft and comfortable surgical gowns",
       "features": [
         "Soft and smooth fabric",
@@ -182,34 +182,36 @@
     {
       "id": "dressing-kit",
       "category": "Kits",
-      "name": "Dressing Kit",
+      "name": "DRESSING KIT",
       "description": "Complete dressing kit for medical procedures",
       "contents": [
-        "Dressing tray - 1",
-        "Gauze - 5",
-        "Cotton Balls - 5",
+        "Tray - 1",
+        "Gauze Swabs - 5",
+        "Cotton Balls - 3",
         "Forceps - 1",
         "Gloves - 1",
-        "SMS Sheet - 1"
+        "SMS Sheet - 1",
+        "Waterproof Sheet - 1",
+        "Hand Towel - 1"
       ]
     },
     {
       "id": "surgical-kit",
       "category": "Kits",
-      "name": "Surgical Kit",
+      "name": "SURGICAL KIT",
       "description": "Comprehensive surgical kit",
       "contents": [
         "Surgery Gown - 3",
         "Hand Towel - 3",
         "Large Sheet - 3",
-        "Absorbent Sheet - 2",
+        "Absorbant Sheet - 2",
         "Trolley Sheet - 2"
       ]
     },
     {
       "id": "hiv-kit",
       "category": "Kits",
-      "name": "HIV Kit",
+      "name": "HIV KIT",
       "description": "Protective kit for HIV procedures",
       "contents": [
         "Surgeon Gown - 1",
@@ -217,14 +219,16 @@
         "Shoe Cover - 1",
         "Goggles - 1",
         "Gloves - 1",
-        "Mask - 1"
+        "Mask - 1",
+        "Bag - 1",
+        "Trolley Sheet - 1"
       ]
     },
     {
-      "id": "orthopaedic-kit",
+      "id": "orthopaedic-kit-major",
       "category": "Kits",
-      "name": "Orthopaedic Kit",
-      "description": "Specialized kit for orthopaedic procedures",
+      "name": "ORTHOPAEDIC KIT - MAJOR",
+      "description": "Specialized kit for major orthopaedic procedures",
       "contents": [
         "Main Trolley reinforced - 1",
         "Mayo stand cover - 1",
@@ -235,6 +239,71 @@
         "Basin stand sheet - 1",
         "Leggings - 2"
       ]
+    },
+    {
+      "id": "orthopaedic-kit-minor",
+      "category": "Kits",
+      "name": "ORTHOPAEDIC KIT - MINOR",
+      "description": "Specialized kit for minor orthopaedic procedures",
+      "contents": [
+        "Main Trolley reinforced - 1",
+        "Mayo stand cover - 1",
+        "Absorbent ortho U drape with U cut adhesive - 1",
+        "Pain drape with adhesive tape - 2",
+        "Plain sheet - 2",
+        "Cautery bag with release",
+        "Basin stand sheet - 1",
+        "Leggings - 2"
+      ]
+    },
+    {
+      "id": "dialysis-on-off",
+      "category": "Kits",
+      "name": "DIALYSIS ON & OFF",
+      "description": "Complete dialysis kit for on and off procedures",
+      "contents": []
+    },
+    {
+      "id": "lscs-kit",
+      "category": "Kits",
+      "name": "LSCS KIT",
+      "description": "Lower segment cesarean section kit",
+      "contents": []
+    },
+    {
+      "id": "general-kit",
+      "category": "Kits",
+      "name": "GENERAL KIT",
+      "description": "General purpose surgical kit",
+      "contents": []
+    },
+    {
+      "id": "dressing-kit-ortho",
+      "category": "Kits",
+      "name": "DRESSING KIT (ORTHO)",
+      "description": "Dressing kit specifically designed for orthopaedic procedures",
+      "contents": []
+    },
+    {
+      "id": "eto-reinforced-gown",
+      "category": "Kits",
+      "name": "ETO REINFORCED GOWN",
+      "description": "Ethylene oxide sterilized reinforced gown kit",
+      "contents": []
+    },
+    {
+      "id": "tkr-kit",
+      "category": "Kits",
+      "name": "TKR KIT",
+      "description": "Total knee replacement kit",
+      "contents": []
+    },
+    {
+      "id": "laparoscopy-kit",
+      "category": "Kits",
+      "name": "LAPAROSCOPY KIT",
+      "description": "Complete laparoscopy procedure kit",
+      "contents": []
     }
   ],
   "categories": [

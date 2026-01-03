@@ -200,7 +200,15 @@ const Products = () => {
       'dressing-kit': '/images/dressing-kit.png',
       'surgical-kit': '/images/surgical-kit.png',
       'hiv-kit': '/images/hiv-kit.png',
-      'orthopaedic-kit': '/images/orthopaedic-kit.png'
+      'orthopaedic-kit-major': '/images/orthopaedic-kit.png',
+      'orthopaedic-kit-minor': '/images/orthopaedic-kit.png',
+      'dialysis-on-off': '/images/dressing-kit.png',
+      'lscs-kit': '/images/orthopaedic-kit.png',
+      'general-kit': '/images/dressing-kit.png',
+      'dressing-kit-ortho': '/images/dressing-kit.png',
+      'eto-reinforced-gown': '/images/surgical-gowns.png',
+      'tkr-kit': '/images/surgical-kit.png',
+      'laparoscopy-kit': '/images/orthopaedic-kit.png'
     };
     return imageMap[productId] || null;
   };
