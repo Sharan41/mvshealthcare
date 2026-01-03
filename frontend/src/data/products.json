@@ -230,14 +230,15 @@
       "name": "ORTHOPAEDIC KIT - MAJOR",
       "description": "Specialized kit for major orthopaedic procedures",
       "contents": [
-        "Main Trolley reinforced - 1",
-        "Mayo stand cover - 1",
-        "Absorbent ortho U drape with U cut adhesive - 1",
-        "Pain drape with adhesive tape - 2",
-        "Plain sheet - 2",
-        "Cautery bag with release",
-        "Basin stand sheet - 1",
-        "Leggings - 2"
+        "Surgeon reinforced gown - 5",
+        "Hand Towel - 5",
+        "Large Sheet - 5",
+        "Ortho Drape - 1",
+        "AB Sheet - 4",
+        "Towel - 4",
+        "Trolley - 1",
+        "Mayo cover - 1",
+        "Cautry bag - 1"
       ]
     },
     {
@@ -246,14 +247,13 @@
       "name": "ORTHOPAEDIC KIT - MINOR",
       "description": "Specialized kit for minor orthopaedic procedures",
       "contents": [
-        "Main Trolley reinforced - 1",
-        "Mayo stand cover - 1",
-        "Absorbent ortho U drape with U cut adhesive - 1",
-        "Pain drape with adhesive tape - 2",
-        "Plain sheet - 2",
-        "Cautery bag with release",
-        "Basin stand sheet - 1",
-        "Leggings - 2"
+        "Surgeon Gown - 3",
+        "Hand Towel - 3",
+        "Large Sheet - 3",
+        "Small Sheet - 3",
+        "Trolley - 1",
+        "Mayo Cover - 1",
+        "Cautery Bag - 1"
       ]
     },
     {
@@ -261,49 +261,104 @@
       "category": "Kits",
       "name": "DIALYSIS ON & OFF",
       "description": "Complete dialysis kit for on and off procedures",
-      "contents": []
+      "contents": [
+        "Dressing Tray - 1",
+        "Gauze Swabs - 5",
+        "Cotton Balls - 3",
+        "Forceps - 1",
+        "Gloves - 1",
+        "SMS Sheet - 1",
+        "Waterproof Sheet - 1",
+        "Towel - 1"
+      ]
     },
     {
       "id": "lscs-kit",
       "category": "Kits",
       "name": "LSCS KIT",
       "description": "Lower segment cesarean section kit",
-      "contents": []
+      "contents": [
+        "Surgeon Gown - 3",
+        "Hand Towel - 3",
+        "Large Sheet - 1",
+        "Plain Sheet - 4",
+        "Trolley Sheet - 1",
+        "Centre Hole - 1",
+        "Cautery Bag - 1"
+      ]
     },
     {
       "id": "general-kit",
       "category": "Kits",
       "name": "GENERAL KIT",
       "description": "General purpose surgical kit",
-      "contents": []
+      "contents": [
+        "Surgeon Gown - 1",
+        "Hand Towel - 1",
+        "Large Sheet - 1",
+        "AB Sheet - 1",
+        "Trolley Sheet - 1",
+        "Mayo Cover - 1",
+        "Cautry Bag - 1"
+      ]
     },
     {
       "id": "dressing-kit-ortho",
       "category": "Kits",
       "name": "DRESSING KIT (ORTHO)",
       "description": "Dressing kit specifically designed for orthopaedic procedures",
-      "contents": []
+      "contents": [
+        "Dressing Tray - 1",
+        "Gauze Swabs - 5",
+        "Cotton Balls - 3",
+        "Forceps - 1",
+        "Gloves - 1",
+        "SMS Sheet - 1",
+        "Waterproof Sheet - 1",
+        "Hand Towel - 1"
+      ]
     },
     {
       "id": "eto-reinforced-gown",
       "category": "Kits",
       "name": "ETO REINFORCED GOWN",
       "description": "Ethylene oxide sterilized reinforced gown kit",
-      "contents": []
+      "contents": [
+        "Reinforced Gown - 1",
+        "Hand Towel - 1"
+      ]
     },
     {
       "id": "tkr-kit",
       "category": "Kits",
       "name": "TKR KIT",
       "description": "Total knee replacement kit",
-      "contents": []
+      "contents": [
+        "Reinforced gown - 4",
+        "Hand Towel - 4",
+        "Large Sheet - 3",
+        "Small Sheet - 2",
+        "Knee Hole Drape - 1",
+        "Trolley Sheet - 1",
+        "Mayo Cover - 1",
+        "Cautry Bag - 1"
+      ]
     },
     {
       "id": "laparoscopy-kit",
       "category": "Kits",
       "name": "LAPAROSCOPY KIT",
       "description": "Complete laparoscopy procedure kit",
-      "contents": []
+      "contents": [
+        "Surgeon Gown - 3",
+        "Hand Towel - 3",
+        "Laparoscopy Drape - 1",
+        "AB Sheet - 2",
+        "Large Sheet - 1",
+        "Trolley Sheet - 1",
+        "Patient Towel - 1",
+        "Hip Legging - 1"
+      ]
     }
   ],
   "categories": [
