@@ -535,6 +535,9 @@
   letter-spacing: 0.05em;
   margin-top: var(--spacing-sm);
   box-shadow: 0 2px 8px rgba(61, 80, 157, 0.3);
+  white-space: nowrap;
+  overflow: visible;
+  max-width: 100%;
 }
 
 /* Tap to flip indicator - mobile only */
@@ -1421,8 +1424,13 @@
   }
 
   .product-category-badge {
-    font-size: clamp(0.6875rem, 2.5vw, 0.75rem);
-    padding: var(--spacing-xxs) var(--spacing-sm);
+    font-size: clamp(0.625rem, 2.5vw, 0.75rem);
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .product-card-back-content {
