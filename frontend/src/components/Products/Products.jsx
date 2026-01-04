@@ -72,57 +72,44 @@ const Products = () => {
   const titleVariants = {
     hidden: { 
       opacity: 0, 
-      x: -50,
-      y: 20,
-      scale: 0.95,
-      filter: 'blur(6px)'
+      y: 20
     },
     visible: {
       opacity: 1,
-      x: 0,
       y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
       transition: {
-        duration: 1.2,
-        ease: [0.16, 1, 0.3, 1],
-        delay: 0.1
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
-  // Enhanced filter button animation with spring physics
+  // Simplified filter button animation
   const filterButtonVariants = {
     hidden: { 
       opacity: 0, 
-      y: 15,
-      scale: 0.92,
-      filter: 'blur(3px)'
+      y: 10
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
       transition: {
-        type: "spring",
-        stiffness: 250,
-        damping: 22,
-        duration: 0.7
+        duration: 0.3,
+        ease: "easeOut"
       }
     }
   };
 
   const filterVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.06,
-        delayChildren: 0.3,
-        ease: [0.16, 1, 0.3, 1]
+        duration: 0.4,
+        staggerChildren: 0.03,
+        delayChildren: 0.1,
+        ease: "easeOut"
       }
     }
   };
@@ -133,8 +120,8 @@ const Products = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.05,
+        delayChildren: 0.1
       }
     }
   };
@@ -142,29 +129,14 @@ const Products = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 80,
-      scale: 0.9,
-      filter: 'blur(10px)',
-      rotateY: -10
+      y: 30
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-      rotateY: 0,
       transition: {
-        duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        opacity: { 
-          duration: 0.6, 
-          ease: [0.4, 0, 0.2, 1],
-          delay: 0.1
-        },
-        y: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-        scale: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] },
-        filter: { duration: 0.5 },
-        rotateY: { duration: 0.6 }
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
@@ -295,9 +267,6 @@ const Products = () => {
                   key={product.id} 
                   className="product-card-wrapper"
                   variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: window.innerWidth <= 968 ? 0 : 0.2, margin: "0px" }}
                   onClick={(e) => {
                     // Prevent wrapper from interfering with card clicks
                     e.stopPropagation();
