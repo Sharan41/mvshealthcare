@@ -113,6 +113,8 @@ const Hero = () => {
             <div className="hero-image-container">
               <img 
                 src="/images/hero-banner.png" 
+                srcSet="/images/hero-banner-mobile.jpg 600w, /images/hero-banner.png 800w"
+                sizes="(max-width: 768px) 600px, 800px"
                 alt="MVS Healthcare Products"
                 className="hero-banner-image"
                 fetchpriority="high"
