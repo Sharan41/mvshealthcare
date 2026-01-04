@@ -9,9 +9,9 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-        duration: 0.6,
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+        duration: 0.3,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
@@ -59,15 +59,14 @@ const Hero = () => {
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, x: 30, scale: 0.96, y: 20 },
+    hidden: { opacity: 0, x: 20, y: 10 },
     visible: {
       opacity: 1,
       x: 0,
-      scale: 1,
       y: 0,
       transition: {
-        duration: 1.3,
-        delay: 0.4,
+        duration: 0.5,
+        delay: 0.1,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -117,8 +116,7 @@ const Hero = () => {
                 sizes="(max-width: 768px) 600px, 800px"
                 alt="MVS Healthcare Products"
                 className="hero-banner-image"
-                fetchpriority="high"
-                decoding="async"
+                fetchPriority="high"
               />
             </div>
           </motion.div>
