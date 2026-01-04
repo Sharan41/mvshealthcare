@@ -1369,6 +1369,20 @@
     flex: 1 1 auto;
     min-width: calc(50% - var(--spacing-xs));
     max-width: calc(50% - var(--spacing-xs));
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  /* Remove bubble/scale effects on mobile */
+  .filter-btn:hover,
+  .filter-btn:active {
+    transform: none !important;
+  }
+
+  .filter-btn.active {
+    transform: none !important;
   }
 
   .products-grid {
@@ -1646,6 +1660,7 @@
   .products-filter {
     margin: 0 var(--spacing-xs) var(--spacing-sm);
     padding: var(--spacing-xs);
+    gap: 6px;
   }
 
   .filter-btn {
@@ -1654,6 +1669,7 @@
     min-height: 32px;
     min-width: calc(50% - 4px);
     max-width: calc(50% - 4px);
+    border-radius: 6px;
   }
 
   .products-grid {
@@ -1710,6 +1726,7 @@
   .filter-btn {
     font-size: 0.6875rem;
     padding: 6px 10px;
+    border-radius: 6px;
   }
 
   .product-card-wrapper {
