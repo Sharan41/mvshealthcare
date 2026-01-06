@@ -1,0 +1,261 @@
+%------------------------
+% Resume in Latex
+% Author : Gennadii Chursov
+% Based off of: https://github.com/sb2nov/resume and https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Sai Sharan Vishnu} \\ \vspace{1pt}
+    \small \textit{} \\
+    6383991383 $|$ \href{mailto:saisharanvishnu@gmail.com}{\underline{saisharanvishnu@gmail.com }} $|$ 
+    \href{https://www.linkedin.com/in/sai-sharan-vishnu}{\underline{linkedin.com/in/sai-sharan-vishnu}} $|$
+    \href{https://github.com/Sharan41}
+    {\underline{github.com/Sharan41}}\\\vspace{1.5mm}
+\end{center}    
+    
+
+%-----------SUMMARY-----------
+\section*{Summary}
+Full-stack developer and AI/ML enthusiast passionate about building technology that solves real problems and creates meaningful impact. Experienced in MERN stack development, AI/ML models, and business intelligence, with proven expertise in scalable web applications and AI-powered analytics.
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {PSG College of Technology}{Coimbatore}
+      {Bachelor Of Computer Science and Engineering(BE CSE), Awarded First Class with CGPA: 8.22}{2021 - 2025}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National University of Singapore}{Singapore}
+      {AI-Powered Business Analytics, Global Immersion Programme (GIP)}{Jun 2025 - Jul 2025}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bharatiya Vidhya Bhavan}{Coimbatore}
+      {}{2021}
+      \resumeItem{Class 12th -98.38 percentage  (School 3rd ),cutoff  -197.715}
+      \resumeItem{Class 10th-98.2 percentage(School 2nd), School Pupil Leader(2021) and House Captain(2019)}
+  \resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, C, JavaScript, TypeScript} \\
+     \textbf{Frameworks \& Libraries}{: React, Express.js, Node.js, Flask, FastAPI, PyTorch, D3.js, GSAP} \\
+     \textbf{Databases}{: MongoDB, PostgreSQL, Firebase} \\
+     \textbf{Web Technologies}{: HTML5, CSS3, Bootstrap, RESTful APIs, REST API} \\
+     \textbf{DevOps \& Tools}{: Git, GitHub, Version Control, Vite, XAMPP, Vercel} \\
+     \textbf{AI/ML \& Cloud}{: Proficient in AI/ML models, Google Gemini API, Cloud Platforms, AWS}
+    }}\\
+     \textbf{Soft Skills}{: Communication, Problem Solving, Leadership, Team Collaboration}
+ \end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+    \resumeSubheading
+      {Application Development Intern - C5i (Coimbatore)}{Jul 2025 - Present}
+      {Incivus Lite (AI-Powered Ad Analysis Platform)}{}
+      \resumeItemListStart
+        \resumeItem{Developed 15+ reusable React components with dynamic state management, reducing code duplication by 40\% and improving development efficiency across 5 major application modules}
+        \resumeItem{Built interactive analysis dashboard rendering 6 score metrics with expandable breakdowns, achieving 30\% faster page load times through optimized re-rendering and lazy loading}
+        \resumeItem{Implemented Brand Setup module handling 4 file types with drag-and-drop upload, reducing user setup time by 50\% with real-time validation and Firebase synchronization}
+        \resumeItem{Integrated 4 Gemini AI model endpoints via REST APIs, processing analysis results for 5 compliance metrics with 100\% error handling coverage and graceful fallback states}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Intern - Athachi Marc Pvt. Ltd. (Palakkad, Kerala)}{Feb 2025 - Apr 2025}
+      {Frontend Development}{}
+      \resumeItemListStart
+        \resumeItem{Developed an interactive farm map web application using HTML5, CSS3, JavaScript, D3.js, Bootstrap, and GSAP with SVG-based visualization, enabling users to select farm plots and view detailed plant information with smooth zoom/pan features and reset functionality}
+        \resumeItem{Implemented dynamic timeline interface with event browsing by months and years, featuring popup details with carousel image display, smooth GSAP animations, and responsive design using media queries, deployed on live server using XAMPP}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Web Development Intern  - AppsComp Widgets Pvt Ltd. (Coimbatore )}{June 2024 - July 2024}
+      {MERN STACK-PROJECT}{}
+      \resumeItemListStart
+      \resumeItem{Recreated AppsComp's homepage front-end with React and Bootstrap, enhancing user interaction, form handling, and real-time data display with React-Bootstrap tables}
+        \resumeItem{Developed Node.js/Express RESTful API backend with MongoDB, handling user registration, data retrieval, and error management}
+    \resumeItemListEnd
+    \resumeSubheading
+      {Intern - Spear Head Business Solutions(Coimbatore)}{May 2024 - June 2024}
+      {}{}
+      \resumeItemListStart
+        \resumeItem{Utilized PostgreSQL to execute tasks related to employee database management, maintaining records of attendance and payroll with optimized query performance}
+        \resumeItem{Developed Java-based REST APIs implementing multi-threading, file I/O operations, and data structures for efficient system operations}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Intern - AES Technologies(Coimbatore)}{June 2023 - July 2023}
+      {}{}
+      \resumeItemListStart
+        \resumeItem{Contributed to development of the Reimbursement feature in an HRMS system using Flask framework with backend logic and database integration}
+        \resumeItem{Developed responsive web interfaces using Flask, HTML5, and CSS3, ensuring cross-browser compatibility and mobile responsiveness}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Projects}
+   \resumeSubHeadingListStart
+   \resumeProjectHeading
+         {\textbf{Ramaswamy Hospitals} $|$ \emph{React, Vite, Bilingual (English/Telugu)}}{\href{https://github.com/Sharan41/Ramaswamy-Hospitals}{\underline{GitHub}} $|$ \href{https://www.ramaswamyhospitals.com/}{\underline{Live Website}}}
+          \resumeItemListStart
+           \resumeItem{Developed a professional bilingual hospital website for Dr. Ramaswamy Hospitals, Kavali, featuring 9 pages with English/Telugu language support, responsive design, and comprehensive healthcare information}
+            \resumeItemListEnd
+      \resumeProjectHeading
+         {\textbf{MVS Healthcare} $|$ \emph{React, Vite, Medical Products Catalogue}}{\href{https://www.mvshealthcare.net/}{\underline{Live Website}}}
+          \resumeItemListStart
+           \resumeItem{Built a modern medical disposables catalogue website showcasing 15+ product categories with geometric design elements, product filtering, and contact integration for MVS Healthcare}
+          \resumeItemListEnd
+   \resumeProjectHeading
+         {\textbf{MedScribe AI} $|$ \emph{React, FastAPI, Google Gemini, Supabase}}{\href{https://github.com/Sharan41/Medscribe-AI}{\underline{GitHub}} $|$ \href{https://www.producthunt.com/products/medscribe-ai-2}{\underline{Product Hunt}}}
+          \resumeItemListStart
+           \resumeItem{Developed an AI-powered medical documentation system (Featured on Product Hunt) that automatically transcribes doctor-patient consultations in Tamil, Telugu, and Hindi, and generates structured SOAP notes using Google Gemini AI with React frontend and FastAPI backend}
+            \resumeItemListEnd
+   \resumeProjectHeading
+         {\textbf{Retail Chatbot} $|$ \emph{MERN ,GPT NEO}}{\href{https://github.com/Sharan41/Chatbot}{\underline{GitHub}} $|$ \href{https://retailchatbot.vercel.app}{\underline{Live Website}}}
+          \resumeItemListStart
+           \resumeItem{Developed and deployed a customer support chatbot integrated with a retail analytics platform leveraging both SQL-based and natural language queries   }
+            \resumeItemListEnd
+           \resumeProjectHeading
+         {\textbf{Research - Best Paper Award} $|$ \emph{AlexNet, PyTorch, ICCI 2024}}{\href{https://scrs.in/conference/icci2024/page/Best_Paper\%20Award}{\underline{Best Paper Award (Paper ID: 271)}}}
+          \resumeItemListStart
+           \resumeItem{Awarded Best Paper Award at 5th International Conference on Computational Intelligence (ICCI 2024) for research on Stochastic Particle Swarm Optimization with Bayesian Inference for Hyperparameter Optimization in CNN, published by Springer}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+%-----------Certifications-----------
+\section{Certifications}
+\resumeItemListStart
+     \resumeItem{Full Stack Python Certificate of Merit - Indra Institute Of Education (Issued Jun 2025, Credential ID: IIE/025/2943), covering Full-Stack Development and Python Programming Language}
+     \resumeItem{Introduction To Software Development Using Gen AI - Manorama Horizon \& NeST Digital (Feb 2025)}
+     \resumeItem{Python Programming Definitive Diploma in Udemy} 
+     \resumeItem{Java Programming with Hands On and Complete Web Development Bootcamp by Dr.Angela Yu in Udemy} 
+     \resumeItem{AWS APAC Solutions Architecture virtual experience program on Forage - September 2024}
+\resumeItemListEnd
+
+\section{Extra-Curricular Activities}
+\resumeItemListStart
+\resumeItem{Participated in international exchange trip to Malaysia with Rotaract Club of Klang Central}
+\resumeItem{Best Treasurer of Rotaract Club of Coimbatore SmartCity 2024-25 (Rotary International District 3201)}
+\resumeItem{Delegated in MUNS like SRMVMUN 2022,SSNMUN 2022 and YLGC MUN 13 2023 in committees like DISEC,UNSC and ORF}
+\resumeItem{Organizer in events like TedxPSGCT 2022,YLGC MUN 14(2023) ENEXT2023 (Entrepreneurs Summit)}
+\resumeItem{Class representative in 2nd semester of BE.CSE-G2}
+\resumeItem{Best Boy RYLARIAN in RYLA 2K20 organized by Rotary Club of Coimbatore Texcity}
+\resumeItemListEnd
+     
+\end{document}
+
+

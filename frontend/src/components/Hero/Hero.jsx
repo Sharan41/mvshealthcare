@@ -89,7 +89,6 @@ const Hero = () => {
                 variants={titleVariants}
               >
                 <span className="hero-title-line1">MVS HEALTHCARE</span>
-                <span className="hero-title-line2">PVT. LTD.</span>
               </motion.h1>
               <motion.p 
                 className="hero-tagline"

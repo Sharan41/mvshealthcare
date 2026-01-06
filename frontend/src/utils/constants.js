@@ -1,5 +1,5 @@
 export const COMPANY_INFO = {
-  name: "MVS HEALTHCARE PVT. LTD.",
+  name: "MVS HEALTHCARE",
   tagline: "QUALITY CARE TRUSTED EXPERTISE",
   values: [
     "Top-Notch Quality",

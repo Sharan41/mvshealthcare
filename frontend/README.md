@@ -129,7 +129,7 @@ ISC
 
 ## 👥 Company Information
 
-**MVS Healthcare Pvt. Ltd.**
+**MVS Healthcare**
 - Address: D.no.2-5-2, First Floor, Kummari Vari Street, Kavali, Dist. SPSR Nellore, Andhra Pradesh - 524201, India
 - Phone: +91 8074490300
 - Email: mvshealthcarepvt@gmail.com

@@ -247,7 +247,7 @@ Navbar with menu items that scroll to specific sections:
 #### Section 5: Contact
 **✅ Contact Information** (from MVS Brochure):
 
-- **Company Name**: MVS HEALTHCARE PVT. LTD.
+- **Company Name**: MVS HEALTHCARE
 - **Address**: 
   D.no.2-5-2, First Floor, Kummari Vari Street, Kavali, 
   Dist. SPSR Nellore, Andhra Pradesh - 524201 (India)
